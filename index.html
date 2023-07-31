@@ -355,27 +355,30 @@ chbox=document.getElementById('one2');
                   var pereg82 = Number(document.getElementById("pereg82").value);
                   var pereg92 = Number(document.getElementById("pereg92").value);
         
-        
-                  var result2 = 12 + num12 + num22 + num32 + num42+ num62 + num82 - stan2 + pereg12 + pereg22 + pereg32 + pereg42 + pereg52 + pereg62 + pereg72 + pereg82 + pereg92 + dl_marsh2;
+
+                  var result2 = 12 + num12 + num22 + num32 + num42 + num62 + num82 - stan2 + pereg12 + pereg22 + pereg32 + pereg42 + pereg52 + pereg62 + pereg72 + pereg82 + pereg92 + dl_marsh2;
                   var kol2 = kol12 + kol22 + kol32 + kol42 + kol62 + kol82;
 		  var kol2_ost = 45 - kol2;
                   document.getElementById("result2").innerHTML = result2;
                   document.getElementById("kol2").innerHTML = kol2;
 		  document.getElementById("kol2_ost").innerHTML = kol2_ost;
 		  document.getElementById("blue-score").innerHTML = "(" + result2 + ")";
+
                   }
          </script>
         <p></p>
-        <fieldset style="width: 500px;>
+        <fieldset style="width: 500px;">
             <legend>Final Score:</legend>
         <p id="result2"> score </p>
         </fieldset>
-        
-        <fieldset style="width: 500px;>
+
+
+
+        <fieldset style="width: 500px;">
             <legend>Train Cars:</legend>
             <p>45 = <span id="kol2">quantity of train cars on the game board</span> + <span id="kol2_ost">quantity remaining</span></p>
         </fieldset>
-
+        
   </div>
 
 
