@@ -29,6 +29,22 @@
     font-size: 16px;
   }
 
+   .list{
+     width: 450px;
+    }
+
+   .ttr{
+     width: 420px;
+    }
+
+   .dest{
+     width: 370px;
+    }
+
+   .ScoreCars{
+     width: 420px;
+    }
+
   
   /* Display content associated with the selected radio button (input type="radio") */
   #tab-btn-1:checked~#content-1,
@@ -88,10 +104,10 @@
 
 
 
-  <div style="width: 418px;" id="content-1">
+  <div class="list" id="content-1">
       
 
-    <fieldset style="width: 400px;">
+    <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num11">Train 1 </label>
         <input id="num11"/> (x1)
@@ -111,7 +127,9 @@
         <label for="num81">Train 8 </label>
         <input id="num81"/> (x21)
         <p></p>
-        <fieldset style="width: 370px;">
+
+        <fieldset class="dest">
+
         <legend>Destination Ticket [Bonus/Penalty] </legend>
         <label for="stan1"  > Stations </label> 
         <input style="width: 100px" id="stan1"/> on the playing field
@@ -222,12 +240,12 @@ chbox=document.getElementById('one1');
                   }
          </script>
         <p></p>
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Final Score:</legend>
         <p id="result1"> score </p>
         </fieldset>
         
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Train Cars:</legend>
             <p>45 = <span id="kol1">qty. of train cars on the game board</span> + <span id="kol1_ost">qty. remaining</span></p>
         </fieldset>
@@ -237,12 +255,10 @@ chbox=document.getElementById('one1');
 
 
 
-
-
-  <div style="width: 418px;" id="content-2">
+  <div class="list" id="content-2">
       
 
-    <fieldset style="width: 400px;">
+    <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num12">Train 1 </label>
         <input id="num12"/> (x1)
@@ -262,7 +278,8 @@ chbox=document.getElementById('one1');
         <label for="num82">Train 8 </label>
         <input id="num82"/> (x21)
         <p></p>
-        <fieldset style="width: 370px;">
+        <fieldset class="dest">
+
         <legend>Destination Ticket [Bonus/Penalty] </legend>
         <label for="stan2"  > Stations </label> 
         <input style="width: 100px" id="stan2"/> on the playing field
@@ -374,14 +391,14 @@ chbox=document.getElementById('one2');
                   }
          </script>
         <p></p>
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Final Score:</legend>
         <p id="result2"> score </p>
         </fieldset>
 
 
 
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Train Cars:</legend>
             <p>45 = <span id="kol2">qty. of train cars on the game board</span> + <span id="kol2_ost">qty. remaining</span></p>
         </fieldset>
@@ -391,10 +408,10 @@ chbox=document.getElementById('one2');
 
 
 
-  <div style="width: 418px;" id="content-3">
+  <div class="list" id="content-3">
     
     
-    <fieldset style="width: 400px;">
+    <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num13">Train 1 </label>
         <input id="num13"/> (x1)
@@ -414,7 +431,9 @@ chbox=document.getElementById('one2');
         <label for="num83">Train 8 </label>
         <input id="num83"/> (x21)
         <p></p>
-        <fieldset style="width: 370px;">
+
+        <fieldset class="dest">
+
         <legend>Destination Ticket [Bonus/Penalty] </legend>
         <label for="stan3"  > Stations </label> 
         <input style="width: 100px" id="stan3"/> on the playing field
@@ -525,12 +544,12 @@ chbox=document.getElementById('one3');
                   }
          </script>
         <p></p>
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Final Score:</legend>
         <p id="result3"> score </p>
         </fieldset>
         
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Train Cars:</legend>
             <p>45 = <span id="kol3">qty. of train cars on the game board</span> + <span id="kol3_ost">qty. remaining</span></p>
         </fieldset>
@@ -538,12 +557,12 @@ chbox=document.getElementById('one3');
 
 
 
-  <div style="width: 418px;" id="content-4">
+  <div class="list" id="content-4">
     
     
 
 
-    <fieldset style="width: 400px;">
+    <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num14">Train 1 </label>
         <input id="num14"/> (x1)
@@ -563,8 +582,10 @@ chbox=document.getElementById('one3');
         <label for="num84">Train 8 </label>
         <input id="num84"/> (x21)
         <p></p>
-        <fieldset style="width: 370px;">
+        <fieldset class="dest">
+
         <legend>Destination Ticket [Bonus/Penalty] </legend>
+
         <label for="stan4"  > Stations </label> 
         <input style="width: 100px" id="stan4"/> on the playing field
 
@@ -667,12 +688,12 @@ chbox=document.getElementById('one4');
                   }
          </script>
         <p></p>
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Final Score:</legend>
         <p id="result4"> score </p>
         </fieldset>
         
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Train Cars:</legend>
             <p>45 = <span id="kol4">qty. of train cars on the game board</span> + <span id="kol4_ost">qty. remaining</span></p>
         </fieldset>
@@ -680,11 +701,11 @@ chbox=document.getElementById('one4');
 
 
 
-  <div style="width: 418px;" id="content-5">
+  <div class="list" id="content-5">
     
     
 
-    <fieldset style="width: 400px;">
+    <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num15">Train 1 </label>
         <input id="num15"/> (x1)
@@ -704,8 +725,10 @@ chbox=document.getElementById('one4');
         <label for="num85">Train 8 </label>
         <input id="num85"/> (x21)
         <p></p>
-        <fieldset style="width: 370px;">
+        <fieldset class="dest">
+
         <legend>Destination Ticket [Bonus/Penalty] </legend>
+
         <label for="stan5"  > Stations </label> 
         <input style="width: 100px" id="stan5"/> on the playing field
 
@@ -809,12 +832,12 @@ chbox=document.getElementById('one5');
                   }
          </script>
         <p></p>
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Final Score:</legend>
         <p id="result5"> score </p>
         </fieldset>
         
-        <fieldset style="width: 400px;">
+        <fieldset class="ScoreCars">
             <legend>Train Cars:</legend>
             <p>45 = <span id="kol5">qty. of train cars on the game board</span> + <span id="kol5_ost">qty. remaining</span></p>
         </fieldset>
