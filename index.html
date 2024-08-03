@@ -79,6 +79,75 @@
     background-color: #fff;
     border-bottom: 1px solid #fff;
   }
+
+
+    .popup  {
+        display: none; /* По умолчанию скрыт */
+        position: fixed; /* Закреплен относительно окна браузера */
+        left: 0; /* Прижат к левому краю экрана */
+        top: 50%; /* Вертикально центрирован */
+        transform: translateY(-50%); /* Смещен на 50% от высоты элемента, чтобы центрировать его по вертикали */
+        padding: 20px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        z-index: 1000; /* Убедитесь, что попап будет поверх других элементов */
+    }
+
+    .popup2  {
+        display: none; /* По умолчанию скрыт */
+        position: fixed; /* Закреплен относительно окна браузера */
+        left: 0; /* Прижат к левому краю экрана */
+        top: 50%; /* Вертикально центрирован */
+        transform: translateY(-50%); /* Смещен на 50% от высоты элемента, чтобы центрировать его по вертикали */
+        padding: 20px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        z-index: 1000; /* Убедитесь, что попап будет поверх других элементов */
+    }
+    .popup3  {
+        display: none; /* По умолчанию скрыт */
+        position: fixed; /* Закреплен относительно окна браузера */
+        left: 0; /* Прижат к левому краю экрана */
+        top: 50%; /* Вертикально центрирован */
+        transform: translateY(-50%); /* Смещен на 50% от высоты элемента, чтобы центрировать его по вертикали */
+        padding: 20px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        z-index: 1000; /* Убедитесь, что попап будет поверх других элементов */
+    }
+    .popup4  {
+        display: none; /* По умолчанию скрыт */
+        position: fixed; /* Закреплен относительно окна браузера */
+        left: 0; /* Прижат к левому краю экрана */
+        top: 50%; /* Вертикально центрирован */
+        transform: translateY(-50%); /* Смещен на 50% от высоты элемента, чтобы центрировать его по вертикали */
+        padding: 20px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        z-index: 1000; /* Убедитесь, что попап будет поверх других элементов */
+    }
+    .popup5  {
+        display: none; /* По умолчанию скрыт */
+        position: fixed; /* Закреплен относительно окна браузера */
+        left: 0; /* Прижат к левому краю экрана */
+        top: 50%; /* Вертикально центрирован */
+        transform: translateY(-50%); /* Смещен на 50% от высоты элемента, чтобы центрировать его по вертикали */
+        padding: 20px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        z-index: 1000; /* Убедитесь, что попап будет поверх других элементов */
+    }
+
 </style>
 
 
@@ -105,28 +174,29 @@
 
 
   <div class="list" id="content-1">
-      
+  
 
     <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num11">Train 1 </label>
-        <input id="num11"/> (x1)
+        <input class="quantity-input" id="num11"/> (x1)
         <p></p>
         <label for="num21">Train 2 </label>
-        <input id="num21"/> (x2)
+        <input class="quantity-input" id="num21"/> (x2)
         <p></p>
         <label for="num31">Train 3 </label>
-        <input id="num31"/> (x4)
+        <input class="quantity-input" id="num31"/> (x4)
         <p></p>
         <label for="num41">Train 4 </label>
-        <input id="num41"/> (x7)
+        <input class="quantity-input" id="num41"/> (x7)
         <p></p>
         <label for="num61">Train 6 </label>
-        <input id="num61"/> (x15)
+        <input class="quantity-input" id="num61"/> (x15)
         <p></p>
         <label for="num81">Train 8 </label>
-        <input id="num81"/> (x21)
+        <input class="quantity-input" id="num81"/> (x21)
         <p></p>
+
 
         <fieldset class="dest">
 
@@ -184,8 +254,56 @@
         background-color: rgb(248, 68, 36);
         border-radius: 15px;" onclick="func1()"><b>   Calculating Scores   </b> </button>
         
-        
-        <script>
+
+<div class="input-container">
+    <div id="popup" class="popup">
+        <button onclick="setQuantity(1)">1</button>
+        <button onclick="setQuantity(2)">2</button>
+        <button onclick="setQuantity(3)">3</button>
+        <button onclick="setQuantity(4)">4</button>
+        <button onclick="setQuantity(5)">5</button>
+        <button onclick="setQuantity(6)">6</button>
+        <button onclick="setQuantity(7)">7</button>
+        <button onclick="setQuantity(8)">8</button>
+        <button onclick="setQuantity(9)">9</button>
+    </div>
+</div>  
+ 
+
+       
+<script>
+window.addEventListener('load', function() {
+    const popup = document.getElementById('popup');
+    popup.style.display = 'none'; // Убедитесь, что попап скрыт при загрузке страницы
+
+    const quantityInputs = document.querySelectorAll('.quantity-input'); // Выбираем все поля ввода с классом 'quantity-input'
+
+    quantityInputs.forEach(input => {
+        input.addEventListener('click', function(event) {
+            const rect = input.getBoundingClientRect();
+            popup.style.display = 'block';
+	    popup.style.left = `${rect.left}px`;
+            popup.style.top = `${rect.bottom + window.scrollY}px`;
+            popup.dataset.targetId = input.id; // Сохраняем id текущего поля ввода в data-атрибут
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!popup.contains(event.target) && !Array.from(quantityInputs).includes(event.target)) {
+            popup.style.display = 'none';
+        }
+    });
+});
+
+function setQuantity(value) {
+    const targetInputId = document.getElementById('popup').dataset.targetId;
+    const targetInput = document.getElementById(targetInputId);
+    targetInput.value = value;
+    document.getElementById('popup').style.display = 'none';
+}
+
+
+
           dl_marsh1 = 0
             function fun11() {
 var chbox;
@@ -261,22 +379,22 @@ chbox=document.getElementById('one1');
     <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num12">Train 1 </label>
-        <input id="num12"/> (x1)
+        <input class="quantity-input" id="num12"/> (x1)
         <p></p>
         <label for="num22">Train 2 </label>
-        <input id="num22"/> (x2)
+        <input class="quantity-input" id="num22"/> (x2)
         <p></p>
         <label for="num32">Train 3 </label>
-        <input id="num32"/> (x4)
+        <input class="quantity-input" id="num32"/> (x4)
         <p></p>
         <label for="num42">Train 4 </label>
-        <input id="num42"/> (x7)
+        <input class="quantity-input" id="num42"/> (x7)
         <p></p>
         <label for="num62">Train 6 </label>
-        <input id="num62"/> (x15)
+        <input class="quantity-input" id="num62"/> (x15)
         <p></p>
         <label for="num82">Train 8 </label>
-        <input id="num82"/> (x21)
+        <input class="quantity-input" id="num82"/> (x21)
         <p></p>
         <fieldset class="dest">
 
@@ -323,7 +441,6 @@ chbox=document.getElementById('one1');
 
 
 
-
         
         <button style="
         padding-left: 40px;
@@ -335,7 +452,55 @@ chbox=document.getElementById('one1');
         border-radius: 15px;" onclick="func2()"><b>   Calculating Scores   </b> </button>
         
         
-        <script>
+<div class="input-container">
+    <div id="popup2" class="popup2">
+        <button onclick="setQuantity(1)">1</button>
+        <button onclick="setQuantity(2)">2</button>
+        <button onclick="setQuantity(3)">3</button>
+        <button onclick="setQuantity(4)">4</button>
+        <button onclick="setQuantity(5)">5</button>
+        <button onclick="setQuantity(6)">6</button>
+        <button onclick="setQuantity(7)">7</button>
+        <button onclick="setQuantity(8)">8</button>
+        <button onclick="setQuantity(9)">9</button>
+    </div>
+</div>  
+ 
+
+       
+<script>
+window.addEventListener('load', function() {
+    const popup2 = document.getElementById('popup2');
+    popup2.style.display = 'none'; // Убедитесь, что попап скрыт при загрузке страницы
+
+    const quantityInputs = document.querySelectorAll('.quantity-input'); // Выбираем все поля ввода с классом 'quantity-input'
+
+    quantityInputs.forEach(input => {
+        input.addEventListener('click', function(event) {
+            const rect = input.getBoundingClientRect();
+            popup2.style.display = 'block';
+            popup2.style.left = `${rect.left}px`;
+            popup2.style.top = `${rect.bottom + window.scrollY}px`;
+            popup2.dataset.targetId = input.id; // Сохраняем id текущего поля ввода в data-атрибут
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!popup2.contains(event.target) && !Array.from(quantityInputs).includes(event.target)) {
+            popup2.style.display = 'none';
+        }
+    });
+});
+
+function setQuantity(value) {
+    const targetInputId = document.getElementById('popup2').dataset.targetId;
+    const targetInput = document.getElementById(targetInputId);
+    targetInput.value = value;
+    document.getElementById('popup2').style.display = 'none';
+}
+
+
+
           dl_marsh2 = 0
             function fun12() {
 var chbox;
@@ -414,22 +579,22 @@ chbox=document.getElementById('one2');
     <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num13">Train 1 </label>
-        <input id="num13"/> (x1)
+        <input class="quantity-input" id="num13"/> (x1)
         <p></p>
         <label for="num23">Train 2 </label>
-        <input id="num23"/> (x2)
+        <input class="quantity-input" id="num23"/> (x2)
         <p></p>
         <label for="num33">Train 3 </label>
-        <input id="num33"/> (x4)
+        <input class="quantity-input" id="num33"/> (x4)
         <p></p>
         <label for="num43">Train 4 </label>
-        <input id="num43"/> (x7)
+        <input class="quantity-input" id="num43"/> (x7)
         <p></p>
         <label for="num63">Train 6 </label>
-        <input id="num63"/> (x15)
+        <input class="quantity-input" id="num63"/> (x15)
         <p></p>
         <label for="num83">Train 8 </label>
-        <input id="num83"/> (x21)
+        <input class="quantity-input" id="num83"/> (x21)
         <p></p>
 
         <fieldset class="dest">
@@ -490,7 +655,54 @@ chbox=document.getElementById('one2');
         border-radius: 15px;" onclick="func3()"><b>   Calculating Scores   </b> </button>
         
         
-        <script>
+<div class="input-container">
+    <div id="popup3" class="popup3">
+        <button onclick="setQuantity(1)">1</button>
+        <button onclick="setQuantity(2)">2</button>
+        <button onclick="setQuantity(3)">3</button>
+        <button onclick="setQuantity(4)">4</button>
+        <button onclick="setQuantity(5)">5</button>
+        <button onclick="setQuantity(6)">6</button>
+        <button onclick="setQuantity(7)">7</button>
+        <button onclick="setQuantity(8)">8</button>
+        <button onclick="setQuantity(9)">9</button>
+    </div>
+</div>  
+ 
+
+       
+<script>
+window.addEventListener('load', function() {
+    const popup3 = document.getElementById('popup3');
+    popup3.style.display = 'none'; // Убедитесь, что попап скрыт при загрузке страницы
+
+    const quantityInputs = document.querySelectorAll('.quantity-input'); // Выбираем все поля ввода с классом 'quantity-input'
+
+    quantityInputs.forEach(input => {
+        input.addEventListener('click', function(event) {
+            const rect = input.getBoundingClientRect();
+            popup3.style.display = 'block';
+            popup3.style.left = `${rect.left}px`;
+            popup3.style.top = `${rect.bottom + window.scrollY}px`;
+            popup3.dataset.targetId = input.id; // Сохраняем id текущего поля ввода в data-атрибут
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!popup3.contains(event.target) && !Array.from(quantityInputs).includes(event.target)) {
+            popup3.style.display = 'none';
+        }
+    });
+});
+
+function setQuantity(value) {
+    const targetInputId = document.getElementById('popup3').dataset.targetId;
+    const targetInput = document.getElementById(targetInputId);
+    targetInput.value = value;
+    document.getElementById('popup3').style.display = 'none';
+}
+
+
           dl_marsh3 = 0
             function fun13() {
 var chbox;
@@ -565,22 +777,22 @@ chbox=document.getElementById('one3');
     <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num14">Train 1 </label>
-        <input id="num14"/> (x1)
+        <input class="quantity-input" id="num14"/> (x1)
         <p></p>
         <label for="num24">Train 2 </label>
-        <input id="num24"/> (x2)
+        <input class="quantity-input" id="num24"/> (x2)
         <p></p>
         <label for="num34">Train 3 </label>
-        <input id="num34"/> (x4)
+        <input class="quantity-input" id="num34"/> (x4)
         <p></p>
         <label for="num44">Train 4 </label>
-        <input id="num44"/> (x7)
+        <input class="quantity-input" id="num44"/> (x7)
         <p></p>
         <label for="num64">Train 6 </label>
-        <input id="num64"/> (x15)
+        <input class="quantity-input" id="num64"/> (x15)
         <p></p>
         <label for="num84">Train 8 </label>
-        <input id="num84"/> (x21)
+        <input class="quantity-input" id="num84"/> (x21)
         <p></p>
         <fieldset class="dest">
 
@@ -637,7 +849,54 @@ chbox=document.getElementById('one3');
         border-radius: 15px;" onclick="func4()"><b>   Calculating Scores   </b> </button>
         
         
-        <script>
+<div class="input-container">
+    <div id="popup4" class="popup4">
+        <button onclick="setQuantity(1)">1</button>
+        <button onclick="setQuantity(2)">2</button>
+        <button onclick="setQuantity(3)">3</button>
+        <button onclick="setQuantity(4)">4</button>
+        <button onclick="setQuantity(5)">5</button>
+        <button onclick="setQuantity(6)">6</button>
+        <button onclick="setQuantity(7)">7</button>
+        <button onclick="setQuantity(8)">8</button>
+        <button onclick="setQuantity(9)">9</button>
+    </div>
+</div>  
+ 
+
+       
+<script>
+window.addEventListener('load', function() {
+    const popup4 = document.getElementById('popup4');
+    popup4.style.display = 'none'; // Убедитесь, что попап скрыт при загрузке страницы
+
+    const quantityInputs = document.querySelectorAll('.quantity-input'); // Выбираем все поля ввода с классом 'quantity-input'
+
+    quantityInputs.forEach(input => {
+        input.addEventListener('click', function(event) {
+            const rect = input.getBoundingClientRect();
+            popup4.style.display = 'block';
+            popup4.style.left = `${rect.left}px`;
+            popup4.style.top = `${rect.bottom + window.scrollY}px`;
+            popup4.dataset.targetId = input.id; // Сохраняем id текущего поля ввода в data-атрибут
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!popup4.contains(event.target) && !Array.from(quantityInputs).includes(event.target)) {
+            popup4.style.display = 'none';
+        }
+    });
+});
+
+function setQuantity(value) {
+    const targetInputId = document.getElementById('popup4').dataset.targetId;
+    const targetInput = document.getElementById(targetInputId);
+    targetInput.value = value;
+    document.getElementById('popup4').style.display = 'none';
+}
+
+
           dl_marsh4 = 0
             function fun14() {
 var chbox;
@@ -708,22 +967,22 @@ chbox=document.getElementById('one4');
     <fieldset class="ttr">
         <legend>TICKET TO RIDE</legend>
         <label for="num15">Train 1 </label>
-        <input id="num15"/> (x1)
+        <input class="quantity-input" id="num15"/> (x1)
         <p></p>
         <label for="num25">Train 2 </label>
-        <input id="num25"/> (x2)
+        <input class="quantity-input" id="num25"/> (x2)
         <p></p>
         <label for="num35">Train 3 </label>
-        <input id="num35"/> (x4)
+        <input class="quantity-input" id="num35"/> (x4)
         <p></p>
         <label for="num45">Train 4 </label>
-        <input id="num45"/> (x7)
+        <input class="quantity-input" id="num45"/> (x7)
         <p></p>
         <label for="num65">Train 6 </label>
-        <input id="num65"/> (x15)
+        <input class="quantity-input" id="num65"/> (x15)
         <p></p>
         <label for="num85">Train 8 </label>
-        <input id="num85"/> (x21)
+        <input class="quantity-input" id="num85"/> (x21)
         <p></p>
         <fieldset class="dest">
 
@@ -780,7 +1039,54 @@ chbox=document.getElementById('one4');
         border-radius: 15px;" onclick="func5()"><b>   Calculating Scores   </b> </button>
         
         
-        <script>
+      <div class="input-container">
+    <div id="popup5" class="popup5">
+        <button onclick="setQuantity(1)">1</button>
+        <button onclick="setQuantity(2)">2</button>
+        <button onclick="setQuantity(3)">3</button>
+        <button onclick="setQuantity(4)">4</button>
+        <button onclick="setQuantity(5)">5</button>
+        <button onclick="setQuantity(6)">6</button>
+        <button onclick="setQuantity(7)">7</button>
+        <button onclick="setQuantity(8)">8</button>
+        <button onclick="setQuantity(9)">9</button>
+    </div>
+</div>  
+ 
+
+       
+<script>
+window.addEventListener('load', function() {
+    const popup5 = document.getElementById('popup5');
+    popup5.style.display = 'none'; // Убедитесь, что попап скрыт при загрузке страницы
+
+    const quantityInputs = document.querySelectorAll('.quantity-input'); // Выбираем все поля ввода с классом 'quantity-input'
+
+    quantityInputs.forEach(input => {
+        input.addEventListener('click', function(event) {
+            const rect = input.getBoundingClientRect();
+            popup5.style.display = 'block';
+            popup5.style.left = `${rect.left}px`;
+            popup5.style.top = `${rect.bottom + window.scrollY}px`;
+            popup5.dataset.targetId = input.id; // Сохраняем id текущего поля ввода в data-атрибут
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!popup5.contains(event.target) && !Array.from(quantityInputs).includes(event.target)) {
+            popup5.style.display = 'none';
+        }
+    });
+});
+
+function setQuantity(value) {
+    const targetInputId = document.getElementById('popup5').dataset.targetId;
+    const targetInput = document.getElementById(targetInputId);
+    targetInput.value = value;
+    document.getElementById('popup5').style.display = 'none';
+}
+
+
           dl_marsh5 = 0
             function fun15() {
 var chbox;
