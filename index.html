@@ -257,6 +257,7 @@
 
 <div class="input-container">
     <div id="popup" class="popup">
+        <button onclick="setQuantity(0)">0</button>
         <button onclick="setQuantity(1)">1</button>
         <button onclick="setQuantity(2)">2</button>
         <button onclick="setQuantity(3)">3</button>
@@ -282,13 +283,14 @@ window.addEventListener('load', function() {
         input.addEventListener('click', function(event) {
             const rect = input.getBoundingClientRect();
             popup.style.display = 'block';
-	    popup.style.left = `${rect.left}px`;
+            popup.style.left = `${rect.left}px`;
             popup.style.top = `${rect.bottom + window.scrollY}px`;
             popup.dataset.targetId = input.id; // Сохраняем id текущего поля ввода в data-атрибут
         });
     });
 
-    document.addEventListener('click', function(event) {
+    document.addEventListener('mousedown', function(event) {
+        // Скрываем попап только если клик произошел вне попапа и полей ввода
         if (!popup.contains(event.target) && !Array.from(quantityInputs).includes(event.target)) {
             popup.style.display = 'none';
         }
@@ -454,15 +456,16 @@ chbox=document.getElementById('one1');
         
 <div class="input-container">
     <div id="popup2" class="popup2">
-        <button onclick="setQuantity(1)">1</button>
-        <button onclick="setQuantity(2)">2</button>
-        <button onclick="setQuantity(3)">3</button>
-        <button onclick="setQuantity(4)">4</button>
-        <button onclick="setQuantity(5)">5</button>
-        <button onclick="setQuantity(6)">6</button>
-        <button onclick="setQuantity(7)">7</button>
-        <button onclick="setQuantity(8)">8</button>
-        <button onclick="setQuantity(9)">9</button>
+        <button onclick="setQuantity2(0)">0</button>
+        <button onclick="setQuantity2(1)">1</button>
+        <button onclick="setQuantity2(2)">2</button>
+        <button onclick="setQuantity2(3)">3</button>
+        <button onclick="setQuantity2(4)">4</button>
+        <button onclick="setQuantity2(5)">5</button>
+        <button onclick="setQuantity2(6)">6</button>
+        <button onclick="setQuantity2(7)">7</button>
+        <button onclick="setQuantity2(8)">8</button>
+        <button onclick="setQuantity2(9)">9</button>
     </div>
 </div>  
  
@@ -492,7 +495,7 @@ window.addEventListener('load', function() {
     });
 });
 
-function setQuantity(value) {
+function setQuantity2(value) {
     const targetInputId = document.getElementById('popup2').dataset.targetId;
     const targetInput = document.getElementById(targetInputId);
     targetInput.value = value;
@@ -657,15 +660,16 @@ chbox=document.getElementById('one2');
         
 <div class="input-container">
     <div id="popup3" class="popup3">
-        <button onclick="setQuantity(1)">1</button>
-        <button onclick="setQuantity(2)">2</button>
-        <button onclick="setQuantity(3)">3</button>
-        <button onclick="setQuantity(4)">4</button>
-        <button onclick="setQuantity(5)">5</button>
-        <button onclick="setQuantity(6)">6</button>
-        <button onclick="setQuantity(7)">7</button>
-        <button onclick="setQuantity(8)">8</button>
-        <button onclick="setQuantity(9)">9</button>
+        <button onclick="setQuantity3(0)">0</button>
+        <button onclick="setQuantity3(1)">1</button>
+        <button onclick="setQuantity3(2)">2</button>
+        <button onclick="setQuantity3(3)">3</button>
+        <button onclick="setQuantity3(4)">4</button>
+        <button onclick="setQuantity3(5)">5</button>
+        <button onclick="setQuantity3(6)">6</button>
+        <button onclick="setQuantity3(7)">7</button>
+        <button onclick="setQuantity3(8)">8</button>
+        <button onclick="setQuantity3(9)">9</button>
     </div>
 </div>  
  
@@ -695,7 +699,7 @@ window.addEventListener('load', function() {
     });
 });
 
-function setQuantity(value) {
+function setQuantity3(value) {
     const targetInputId = document.getElementById('popup3').dataset.targetId;
     const targetInput = document.getElementById(targetInputId);
     targetInput.value = value;
@@ -851,15 +855,16 @@ chbox=document.getElementById('one3');
         
 <div class="input-container">
     <div id="popup4" class="popup4">
-        <button onclick="setQuantity(1)">1</button>
-        <button onclick="setQuantity(2)">2</button>
-        <button onclick="setQuantity(3)">3</button>
-        <button onclick="setQuantity(4)">4</button>
-        <button onclick="setQuantity(5)">5</button>
-        <button onclick="setQuantity(6)">6</button>
-        <button onclick="setQuantity(7)">7</button>
-        <button onclick="setQuantity(8)">8</button>
-        <button onclick="setQuantity(9)">9</button>
+        <button onclick="setQuantity4(0)">0</button>
+        <button onclick="setQuantity4(1)">1</button>
+        <button onclick="setQuantity4(2)">2</button>
+        <button onclick="setQuantity4(3)">3</button>
+        <button onclick="setQuantity4(4)">4</button>
+        <button onclick="setQuantity4(5)">5</button>
+        <button onclick="setQuantity4(6)">6</button>
+        <button onclick="setQuantity4(7)">7</button>
+        <button onclick="setQuantity4(8)">8</button>
+        <button onclick="setQuantity4(9)">9</button>
     </div>
 </div>  
  
@@ -889,7 +894,7 @@ window.addEventListener('load', function() {
     });
 });
 
-function setQuantity(value) {
+function setQuantity4(value) {
     const targetInputId = document.getElementById('popup4').dataset.targetId;
     const targetInput = document.getElementById(targetInputId);
     targetInput.value = value;
@@ -1041,15 +1046,16 @@ chbox=document.getElementById('one4');
         
       <div class="input-container">
     <div id="popup5" class="popup5">
-        <button onclick="setQuantity(1)">1</button>
-        <button onclick="setQuantity(2)">2</button>
-        <button onclick="setQuantity(3)">3</button>
-        <button onclick="setQuantity(4)">4</button>
-        <button onclick="setQuantity(5)">5</button>
-        <button onclick="setQuantity(6)">6</button>
-        <button onclick="setQuantity(7)">7</button>
-        <button onclick="setQuantity(8)">8</button>
-        <button onclick="setQuantity(9)">9</button>
+        <button onclick="setQuantity5(0)">0</button>
+        <button onclick="setQuantity5(1)">1</button>
+        <button onclick="setQuantity5(2)">2</button>
+        <button onclick="setQuantity5(3)">3</button>
+        <button onclick="setQuantity5(4)">4</button>
+        <button onclick="setQuantity5(5)">5</button>
+        <button onclick="setQuantity5(6)">6</button>
+        <button onclick="setQuantity5(7)">7</button>
+        <button onclick="setQuantity5(8)">8</button>
+        <button onclick="setQuantity5(9)">9</button>
     </div>
 </div>  
  
@@ -1079,7 +1085,7 @@ window.addEventListener('load', function() {
     });
 });
 
-function setQuantity(value) {
+function setQuantity5(value) {
     const targetInputId = document.getElementById('popup5').dataset.targetId;
     const targetInput = document.getElementById(targetInputId);
     targetInput.value = value;
