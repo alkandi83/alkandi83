@@ -15,6 +15,9 @@
         .tabs {
             font-size: 0;
             width: 100%; /* Устанавливаем ширину вкладок на 100% */
+            max-width: 1200px; /* Устанавливаем максимальную ширину для вкладок */
+            margin: 0 auto; /* Центрируем контейнер вкладок */
+            box-sizing: border-box; /* Учитываем padding и border */
         }
 
         .tabs>input[type="radio"] {
@@ -26,15 +29,12 @@
             border: 1px solid #e0e0e0;
             padding: 10px 15px;
             font-size: 16px;
-        }
-
-        .list {
-            width: 100%; /* Используем 100% ширины экрана */
             box-sizing: border-box; /* Учитываем padding и border */
         }
 
-        .ttr, .dest, .ScoreCars {
+        .list, .ttr, .dest, .ScoreCars {
             width: 100%; /* Используем 100% ширины экрана */
+            max-width: 100%; /* Ограничиваем ширину до 100% родителя */
             box-sizing: border-box; /* Учитываем padding и border */
         }
 
@@ -72,24 +72,20 @@
             border-bottom: 1px solid #fff;
         }
 
-
-    .popup, .popup2, .popup3, .popup4, .popup5, .popup_st, .popup_st2, .popup_st3, .popup_st4, .popup_st5  {
-        display: none; /* По умолчанию скрыт */
-        position: fixed; /* Закреплен относительно окна браузера */
-        left: 0; /* Прижат к левому краю экрана */
-        top: 50%; /* Вертикально центрирован */
-        transform: translateY(-50%); /* Смещен на 50% от высоты элемента, чтобы центрировать его по вертикали */
-        padding: 20px;
-        background: white;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-        z-index: 1000; /* Убедитесь, что попап будет поверх других элементов */
-    }
-
-
-</style>
-
+        .popup, .popup2, .popup3, .popup4, .popup5, .popup_st, .popup_st2, .popup_st3, .popup_st4, .popup_st5 {
+            display: none; /* По умолчанию скрыт */
+            position: fixed; /* Закреплен относительно окна браузера */
+            left: 0; /* Прижат к левому краю экрана */
+            top: 50%; /* Вертикально центрирован */
+            transform: translateY(-50%); /* Смещен на 50% от высоты элемента, чтобы центрировать его по вертикали */
+            padding: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            z-index: 1000; /* Убедитесь, что попап будет поверх других элементов */
+        }
+    </style>
 
 
 <div class="tabs">
