@@ -8,16 +8,37 @@
         body {
             margin: 0;
             padding: 0;
-            width: 100%;
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center; /* Центрируем содержимое */
+            align-items: center; /* Центрируем содержимое по вертикали */
+            height: 100vh; /* Высота на весь экран */
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 500px; /* Максимальная ширина контейнера */
+            width: 100%; /* Ширина 100% от родительского контейнера */
+            box-sizing: border-box; /* Включаем padding и border в ширину */
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Медиазапросы для адаптации стилей при ширине экрана менее 500px */
+        @media screen and (max-width: 500px) {
+            .container {
+                padding: 10px; /* Уменьшаем padding для меньшего экрана */
+            }
+
+            /* Добавьте дополнительные стили, если нужно адаптировать другие элементы */
         }
 
         .tabs {
             font-size: 0;
-            width: 100%;
-            max-width: 100%; /* Максимальная ширина равна ширине экрана */
-            margin: 0 auto;
-            box-sizing: border-box;
+            width: 100%; /* Устанавливаем ширину вкладок на 100% */
         }
 
         .tabs>input[type="radio"] {
@@ -29,16 +50,18 @@
             border: 1px solid #e0e0e0;
             padding: 10px 15px;
             font-size: 16px;
-            box-sizing: border-box;
         }
 
-        .list, .ttr, .dest, .ScoreCars {
+        .list {
             width: 100%; /* Используем 100% ширины экрана */
-            max-width: 100%; /* Ограничиваем ширину до 100% родителя */
-            box-sizing: border-box;
+            box-sizing: border-box; /* Учитываем padding и border */
         }
 
-        /* Отображение контента для выбранной вкладки */
+        .ttr, .dest, .ScoreCars {
+            width: 100%; /* Используем 100% ширины экрана */
+            box-sizing: border-box; /* Учитываем padding и border */
+        }
+
         #tab-btn-1:checked~#content-1,
         #tab-btn-2:checked~#content-2,
         #tab-btn-3:checked~#content-3,
@@ -61,7 +84,6 @@
             cursor: pointer;
             position: relative;
             top: 1px;
-            box-sizing: border-box;
         }
 
         .tabs>label:not(:first-of-type) {
@@ -73,34 +95,18 @@
             border-bottom: 1px solid #fff;
         }
 
-        .popup, .popup2, .popup3, .popup4, .popup5, .popup_st, .popup_st2, .popup_st3, .popup_st4, .popup_st5 {
-            display: none;
-            position: fixed;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
+        .popup, .popup2, .popup3, .popup4, .popup5, .popup_st, .popup_st2, .popup_st3, .popup_st4, .popup_st5  {
+            display: none; /* По умолчанию скрыт */
+            position: fixed; /* Закреплен относительно окна браузера */
+            left: 0; /* Прижат к левому краю экрана */
+            top: 50%; /* Вертикально центрирован */
+            transform: translateY(-50%); /* Смещен на 50% от высоты элемента, чтобы центрировать его по вертикали */
             padding: 20px;
             background: white;
             border: 1px solid #ccc;
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        /* Медиазапросы для мобильных устройств */
-        @media (max-width: 600px) {
-            .tabs>label {
-                font-size: 14px;
-                padding: 8px;
-            }
-
-            .tabs>div {
-                padding: 8px;
-            }
-
-            .list, .ttr, .dest, .ScoreCars {
-                padding: 5px; /* Добавляем немного отступов */
-            }
+            z-index: 1000; /* Убедитесь, что попап будет поверх других элементов */
         }
     </style>
 
