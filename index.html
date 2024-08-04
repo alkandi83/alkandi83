@@ -8,37 +8,16 @@
         body {
             margin: 0;
             padding: 0;
+            width: 100%;
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center; /* Центрируем содержимое */
-            align-items: center; /* Центрируем содержимое по вертикали */
-            height: 100vh; /* Высота на весь экран */
-            background-color: #f5f5f5;
-        }
-
-        .container {
-            max-width: 500px; /* Максимальная ширина контейнера */
-            width: 100%; /* Ширина 100% от родительского контейнера */
-            box-sizing: border-box; /* Включаем padding и border в ширину */
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        /* Медиазапросы для адаптации стилей при ширине экрана менее 500px */
-        @media screen and (max-width: 500px) {
-            .container {
-                padding: 10px; /* Уменьшаем padding для меньшего экрана */
-            }
-
-            /* Добавьте дополнительные стили, если нужно адаптировать другие элементы */
         }
 
         .tabs {
             font-size: 0;
             width: 100%; /* Устанавливаем ширину вкладок на 100% */
+            max-width: 1200px; /* Устанавливаем максимальную ширину для вкладок */
+            margin: 0 auto; /* Центрируем контейнер вкладок */
+            box-sizing: border-box; /* Учитываем padding и border */
         }
 
         .tabs>input[type="radio"] {
@@ -50,18 +29,16 @@
             border: 1px solid #e0e0e0;
             padding: 10px 15px;
             font-size: 16px;
-        }
-
-        .list {
-            width: 100%; /* Используем 100% ширины экрана */
             box-sizing: border-box; /* Учитываем padding и border */
         }
 
-        .ttr, .dest, .ScoreCars {
+        .list, .ttr, .dest, .ScoreCars {
             width: 100%; /* Используем 100% ширины экрана */
+            max-width: 100%; /* Ограничиваем ширину до 100% родителя */
             box-sizing: border-box; /* Учитываем padding и border */
         }
 
+        /* Отображение контента для выбранной вкладки */
         #tab-btn-1:checked~#content-1,
         #tab-btn-2:checked~#content-2,
         #tab-btn-3:checked~#content-3,
@@ -95,7 +72,7 @@
             border-bottom: 1px solid #fff;
         }
 
-        .popup, .popup2, .popup3, .popup4, .popup5, .popup_st, .popup_st2, .popup_st3, .popup_st4, .popup_st5  {
+        .popup, .popup2, .popup3, .popup4, .popup5, .popup_st, .popup_st2, .popup_st3, .popup_st4, .popup_st5 {
             display: none; /* По умолчанию скрыт */
             position: fixed; /* Закреплен относительно окна браузера */
             left: 0; /* Прижат к левому краю экрана */
