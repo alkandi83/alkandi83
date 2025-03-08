@@ -13,9 +13,9 @@
 
         body {
             font-family: Arial, sans-serif;
-            font-size: 14px;
+            font-size: 28px; /* Увеличено с 14px до 28px (x2) */
             background-color: #f5f5f5;
-            padding: 10px;
+            padding: 20px; /* Увеличено с 10px до 20px */
             color: #333;
         }
 
@@ -24,7 +24,7 @@
             overflow-x: auto;
             white-space: nowrap;
             background-color: #e0e0e0;
-            padding: 5px 0;
+            padding: 10px 0; /* Увеличено с 5px до 10px */
         }
 
         .tabs input[type="radio"] {
@@ -33,10 +33,10 @@
 
         .tabs label {
             display: inline-block;
-            padding: 10px 15px;
+            padding: 20px 30px; /* Увеличено с 10px 15px до 20px 30px */
             background-color: #ddd;
-            border-radius: 20px 20px 0 0;
-            font-size: 0.9rem;
+            border-radius: 40px 40px 0 0; /* Увеличено с 20px до 40px */
+            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.2s ease;
@@ -49,10 +49,10 @@
 
         .tab-content {
             display: none;
-            padding: 15px;
+            padding: 30px; /* Увеличено с 15px до 30px */
             background-color: #fff;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 0 0 20px 20px; /* Увеличено с 10px до 20px */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Увеличено с 2px 5px до 4px 10px */
         }
 
         #tab-btn-1:checked ~ #content-1,
@@ -63,43 +63,43 @@
         }
 
         fieldset {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 15px;
-            border-radius: 5px;
+            border: 2px solid #ccc; /* Увеличено с 1px до 2px */
+            padding: 20px; /* Увеличено с 10px до 20px */
+            margin-bottom: 30px; /* Увеличено с 15px до 30px */
+            border-radius: 10px; /* Увеличено с 5px до 10px */
         }
 
         legend {
             font-weight: bold;
-            font-size: 0.9rem;
+            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
         }
 
         .input-group {
             display: flex;
             align-items: center;
-            margin-bottom: 10px;
+            margin-bottom: 20px; /* Увеличено с 10px до 20px */
         }
 
         .input-group label {
             flex: 1;
-            font-size: 0.85rem;
+            font-size: 1.7rem; /* Увеличено с 0.85rem до 1.7rem */
             white-space: nowrap;
-            margin-right: 5px;
+            margin-right: 10px; /* Увеличено с 5px до 10px */
         }
 
         .input-group input[type="number"] {
-            width: 50px;
-            padding: 8px;
-            font-size: 0.9rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            width: 80px; /* Уменьшено с 100px (50px x 2) до 80px для компактности */
+            padding: 16px; /* Увеличено с 8px до 16px */
+            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
+            border: 2px solid #ccc; /* Увеличено с 1px до 2px */
+            border-radius: 10px; /* Увеличено с 5px до 10px */
             text-align: center;
         }
 
         .pnts-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
+            gap: 20px; /* Увеличено с 10px до 20px */
         }
 
         .pnts-item {
@@ -108,33 +108,33 @@
         }
 
         .pnts-item label {
-            font-size: 0.8rem;
-            margin-right: 5px;
+            font-size: 1.6rem; /* Увеличено с 0.8rem до 1.6rem */
+            margin-right: 10px; /* Увеличено с 5px до 10px */
         }
 
         .pnts-item input {
-            width: 100%;
-            padding: 6px;
-            font-size: 0.9rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            width: 100%; /* Оставлено как 100%, но из-за уменьшения контейнера станет компактнее */
+            padding: 12px; /* Увеличено с 6px до 12px */
+            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
+            border: 2px solid #ccc; /* Увеличено с 1px до 2px */
+            border-radius: 10px; /* Увеличено с 5px до 10px */
         }
 
         .checkbox {
-            margin: 10px 0;
-            font-size: 0.85rem;
+            margin: 20px 0; /* Увеличено с 10px до 20px */
+            font-size: 1.7rem; /* Увеличено с 0.85rem до 1.7rem */
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            font-size: 1rem;
+            padding: 24px; /* Увеличено с 12px до 24px */
+            font-size: 2rem; /* Увеличено с 1rem до 2rem */
             font-weight: bold;
             border: none;
-            border-radius: 10px;
+            border-radius: 20px; /* Увеличено с 10px до 20px */
             color: #fff;
             cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Увеличено с 2px 4px до 4px 8px */
             transition: transform 0.1s ease;
         }
 
@@ -148,10 +148,10 @@
         button.yellow { background-color: #eaf824; }
 
         .result {
-            font-size: 1.1rem;
+            font-size: 2.2rem; /* Увеличено с 1.1rem до 2.2rem */
             font-weight: bold;
             text-align: center;
-            margin-top: 10px;
+            margin-top: 20px; /* Увеличено с 10px до 20px */
         }
 
         .result.red { color: #f84424; }
@@ -160,9 +160,9 @@
         .result.yellow { color: #eaf824; }
 
         .train-cars {
-            font-size: 0.9rem;
+            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
             text-align: center;
-            margin-top: 10px;
+            margin-top: 20px; /* Увеличено с 10px до 20px */
         }
     </style>
 </head>
