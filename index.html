@@ -13,9 +13,9 @@
 
         body {
             font-family: Arial, sans-serif;
-            font-size: 28px; /* Увеличено с 14px до 28px (x2) */
+            font-size: 28px;
             background-color: #f5f5f5;
-            padding: 20px; /* Увеличено с 10px до 20px */
+            padding: 20px;
             color: #333;
         }
 
@@ -24,7 +24,7 @@
             overflow-x: auto;
             white-space: nowrap;
             background-color: #e0e0e0;
-            padding: 10px 0; /* Увеличено с 5px до 10px */
+            padding: 10px 0;
         }
 
         .tabs input[type="radio"] {
@@ -33,10 +33,10 @@
 
         .tabs label {
             display: inline-block;
-            padding: 20px 30px; /* Увеличено с 10px 15px до 20px 30px */
+            padding: 20px 30px;
             background-color: #ddd;
-            border-radius: 40px 40px 0 0; /* Увеличено с 20px до 40px */
-            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
+            border-radius: 40px 40px 0 0;
+            font-size: 1.8rem;
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.2s ease;
@@ -49,57 +49,58 @@
 
         .tab-content {
             display: none;
-            padding: 30px; /* Увеличено с 15px до 30px */
+            padding: 30px;
             background-color: #fff;
-            border-radius: 0 0 20px 20px; /* Увеличено с 10px до 20px */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Увеличено с 2px 5px до 4px 10px */
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         #tab-btn-1:checked ~ #content-1,
         #tab-btn-2:checked ~ #content-2,
         #tab-btn-3:checked ~ #content-3,
-        #tab-btn-4:checked ~ #content-4 {
+        #tab-btn-4:checked ~ #content-4,
+        #tab-btn-5:checked ~ #content-5 {
             display: block;
         }
 
         fieldset {
-            border: 2px solid #ccc; /* Увеличено с 1px до 2px */
-            padding: 20px; /* Увеличено с 10px до 20px */
-            margin-bottom: 30px; /* Увеличено с 15px до 30px */
-            border-radius: 10px; /* Увеличено с 5px до 10px */
+            border: 2px solid #ccc;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
         }
 
         legend {
             font-weight: bold;
-            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
+            font-size: 1.8rem;
         }
 
         .input-group {
             display: flex;
             align-items: center;
-            margin-bottom: 20px; /* Увеличено с 10px до 20px */
+            margin-bottom: 20px;
         }
 
         .input-group label {
             flex: 1;
-            font-size: 1.7rem; /* Увеличено с 0.85rem до 1.7rem */
+            font-size: 1.7rem;
             white-space: nowrap;
-            margin-right: 10px; /* Увеличено с 5px до 10px */
+            margin-right: 10px;
         }
 
         .input-group input[type="number"] {
-            width: 80px; /* Уменьшено с 100px (50px x 2) до 80px для компактности */
-            padding: 16px; /* Увеличено с 8px до 16px */
-            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
-            border: 2px solid #ccc; /* Увеличено с 1px до 2px */
-            border-radius: 10px; /* Увеличено с 5px до 10px */
+            width: 80px;
+            padding: 16px;
+            font-size: 1.8rem;
+            border: 2px solid #ccc;
+            border-radius: 10px;
             text-align: center;
         }
 
         .pnts-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px; /* Увеличено с 10px до 20px */
+            gap: 20px;
         }
 
         .pnts-item {
@@ -108,34 +109,46 @@
         }
 
         .pnts-item label {
-            font-size: 1.6rem; /* Увеличено с 0.8rem до 1.6rem */
-            margin-right: 10px; /* Увеличено с 5px до 10px */
+            font-size: 1.6rem;
+            margin-right: 10px;
         }
 
         .pnts-item input {
-            width: 100%; /* Оставлено как 100%, но из-за уменьшения контейнера станет компактнее */
-            padding: 12px; /* Увеличено с 6px до 12px */
-            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
-            border: 2px solid #ccc; /* Увеличено с 1px до 2px */
-            border-radius: 10px; /* Увеличено с 5px до 10px */
+            width: 100%;
+            padding: 12px;
+            font-size: 1.8rem;
+            border: 2px solid #ccc;
+            border-radius: 10px;
         }
 
         .checkbox {
-            margin: 20px 0; /* Увеличено с 10px до 20px */
-            font-size: 1.7rem; /* Увеличено с 0.85rem до 1.7rem */
+            margin: 20px 0;
+            font-size: 1.7rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkbox input[type="checkbox"] {
+            width: 40px; /* Увеличено с дефолтного размера до 40px */
+            height: 40px; /* Увеличено с дефолтного размера до 40px */
+            margin-right: 10px;
         }
 
         button {
             width: 100%;
-            padding: 24px; /* Увеличено с 12px до 24px */
-            font-size: 2rem; /* Увеличено с 1rem до 2rem */
+            padding: 24px;
+            font-size: 2rem;
             font-weight: bold;
             border: none;
-            border-radius: 20px; /* Увеличено с 10px до 20px */
+            border-radius: 20px;
             color: #fff;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Увеличено с 2px 4px до 4px 8px */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.1s ease;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         button:active {
@@ -146,23 +159,17 @@
         button.blue { background-color: #2432f8; }
         button.green { background-color: #24f840; }
         button.yellow { background-color: #eaf824; }
+        button.black { background-color: #000000; }
 
         .result {
-            font-size: 2.2rem; /* Увеличено с 1.1rem до 2.2rem */
+            font-size: 2rem; /* Чуть меньше, чтобы уместить на кнопке */
             font-weight: bold;
-            text-align: center;
-            margin-top: 20px; /* Увеличено с 10px до 20px */
+            color: #fff;
         }
 
-        .result.red { color: #f84424; }
-        .result.blue { color: #2432f8; }
-        .result.green { color: #24f840; }
-        .result.yellow { color: #eaf824; }
-
         .train-cars {
-            font-size: 1.8rem; /* Увеличено с 0.9rem до 1.8rem */
-            text-align: center;
-            margin-top: 20px; /* Увеличено с 10px до 20px */
+            font-size: 1.6rem; /* Чуть меньше, чтобы уместить на кнопке */
+            color: #fff;
         }
     </style>
 </head>
@@ -176,6 +183,8 @@
         <label for="tab-btn-3">Green <span id="green-score">(0)</span></label>
         <input type="radio" name="tab-btn" id="tab-btn-4">
         <label for="tab-btn-4">Yellow <span id="yellow-score">(0)</span></label>
+        <input type="radio" name="tab-btn" id="tab-btn-5">
+        <label for="tab-btn-5">Black <span id="black-score">(0)</span></label>
 
         <!-- Red -->
         <div class="tab-content" id="content-1">
@@ -203,9 +212,10 @@
                 </div>
                 <div class="checkbox"><input type="checkbox" id="one1"> Express Bonus (+10)</div>
             </fieldset>
-            <button class="red" onclick="calculateScore(1)">Calculate Score</button>
-            <div class="result red" id="result1">0</div>
-            <div class="train-cars">45 = <span id="kol1">0</span> + <span id="kol1_ost">45</span></div>
+            <button class="red" onclick="calculateScore(1)">
+                <span>Calculate Score</span>
+                <span><span class="result" id="result1">0</span> | <span class="train-cars" id="cars1">45 = 0 + 45</span></span>
+            </button>
         </div>
 
         <!-- Blue -->
@@ -234,9 +244,10 @@
                 </div>
                 <div class="checkbox"><input type="checkbox" id="one2"> Express Bonus (+10)</div>
             </fieldset>
-            <button class="blue" onclick="calculateScore(2)">Calculate Score</button>
-            <div class="result blue" id="result2">0</div>
-            <div class="train-cars">45 = <span id="kol2">0</span> + <span id="kol2_ost">45</span></div>
+            <button class="blue" onclick="calculateScore(2)">
+                <span>Calculate Score</span>
+                <span><span class="result" id="result2">0</span> | <span class="train-cars" id="cars2">45 = 0 + 45</span></span>
+            </button>
         </div>
 
         <!-- Green -->
@@ -265,9 +276,10 @@
                 </div>
                 <div class="checkbox"><input type="checkbox" id="one3"> Express Bonus (+10)</div>
             </fieldset>
-            <button class="green" onclick="calculateScore(3)">Calculate Score</button>
-            <div class="result green" id="result3">0</div>
-            <div class="train-cars">45 = <span id="kol3">0</span> + <span id="kol3_ost">45</span></div>
+            <button class="green" onclick="calculateScore(3)">
+                <span>Calculate Score</span>
+                <span><span class="result" id="result3">0</span> | <span class="train-cars" id="cars3">45 = 0 + 45</span></span>
+            </button>
         </div>
 
         <!-- Yellow -->
@@ -296,18 +308,52 @@
                 </div>
                 <div class="checkbox"><input type="checkbox" id="one4"> Express Bonus (+10)</div>
             </fieldset>
-            <button class="yellow" onclick="calculateScore(4)">Calculate Score</button>
-            <div class="result yellow" id="result4">0</div>
-            <div class="train-cars">45 = <span id="kol4">0</span> + <span id="kol4_ost">45</span></div>
+            <button class="yellow" onclick="calculateScore(4)">
+                <span>Calculate Score</span>
+                <span><span class="result" id="result4">0</span> | <span class="train-cars" id="cars4">45 = 0 + 45</span></span>
+            </button>
+        </div>
+
+        <!-- Black -->
+        <div class="tab-content" id="content-5">
+            <fieldset>
+                <legend>Train Routes</legend>
+                <div class="input-group"><label>Train 1</label><input type="number" id="num15" min="0"/> (x1)</div>
+                <div class="input-group"><label>Train 2</label><input type="number" id="num25" min="0"/> (x2)</div>
+                <div class="input-group"><label>Train 3</label><input type="number" id="num35" min="0"/> (x4)</div>
+                <div class="input-group"><label>Train 4</label><input type="number" id="num45" min="0"/> (x7)</div>
+                <div class="input-group"><label>Train 6</label><input type="number" id="num65" min="0"/> (x15)</div>
+                <div class="input-group"><label>Train 8</label><input type="number" id="num85" min="0"/> (x21)</div>
+            </fieldset>
+            <fieldset>
+                <legend>Destinations</legend>
+                <div class="input-group"><label>Stations</label><input type="number" id="stan5" min="0"/></div>
+                <div class="pnts-grid">
+                    <div class="pnts-item"><label>Pnts 1</label><input type="number" id="pereg15"/></div>
+                    <div class="pnts-item"><label>Pnts 2</label><input type="number" id="pereg25"/></div>
+                    <div class="pnts-item"><label>Pnts 3</label><input type="number" id="pereg35"/></div>
+                    <div class="pnts-item"><label>Pnts 4</label><input type="number" id="pereg45"/></div>
+                    <div class="pnts-item"><label>Pnts 5</label><input type="number" id="pereg55"/></div>
+                    <div class="pnts-item"><label>Pnts 6</label><input type="number" id="pereg65"/></div>
+                    <div class="pnts-item"><label>Pnts 7</label><input type="number" id="pereg75"/></div>
+                    <div class="pnts-item"><label>Pnts 8</label><input type="number" id="pereg85"/></div>
+                </div>
+                <div class="checkbox"><input type="checkbox" id="one5"> Express Bonus (+10)</div>
+            </fieldset>
+            <button class="black" onclick="calculateScore(5)">
+                <span>Calculate Score</span>
+                <span><span class="result" id="result5">0</span> | <span class="train-cars" id="cars5">45 = 0 + 45</span></span>
+            </button>
         </div>
     </div>
 
     <script>
         const soundFiles = [
-            'https://zvukipro.com/uploads/files/2021-04/1617869497_87223b11f59f15c.mp3',
-            'https://zvukipro.com/uploads/files/2021-11/1637861222_4-1.mp3',
-            'https://zvukipro.com/uploads/files/2021-11/1637861275_8-1.mp3',
-            'https://zvukipro.com/uploads/files/2021-11/1637861465_gudok-poezd.mp3'
+            'https://zvukipro.com/uploads/files/2021-04/1617869497_87223b11f59f15c.mp3', // Red
+            'https://zvukipro.com/uploads/files/2021-11/1637861222_4-1.mp3',         // Blue
+            'https://zvukipro.com/uploads/files/2021-11/1637861275_8-1.mp3',         // Green
+            'https://zvukipro.com/uploads/files/2021-11/1637861465_gudok-poezd.mp3', // Yellow
+            'https://zvukipro.com/uploads/files/2021-11/1637861465_gudok-poezd.mp3'  // Black (повтор, можно заменить)
         ];
 
         function calculateScore(playerNumber) {
@@ -335,10 +381,9 @@
             const remainingCars = 45 - usedCars;
 
             document.getElementById(`result${playerNumber}`).textContent = result;
-            document.getElementById(`kol${playerNumber}`).textContent = usedCars;
-            document.getElementById(`kol${playerNumber}_ost`).textContent = remainingCars;
+            document.getElementById(`cars${playerNumber}`).textContent = `45 = ${usedCars} + ${remainingCars}`;
 
-            const color = ['red', 'blue', 'green', 'yellow'][playerNumber - 1];
+            const color = ['red', 'blue', 'green', 'yellow', 'black'][playerNumber - 1];
             document.getElementById(`${color}-score`).textContent = `(${result})`;
 
             const audio = new Audio();
