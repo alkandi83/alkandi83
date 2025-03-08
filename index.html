@@ -70,28 +70,6 @@
             border-bottom: 1px solid #fff;
         }
 
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            text-align: center;
-        }
-
-        .popup button {
-            width: 40px;
-            height: 40px;
-            margin: 5px;
-            font-size: 16px;
-        }
-
         .quantity-input {
             min-width: 40px;
             padding: 5px;
@@ -137,16 +115,6 @@
 
             .tabs>div {
                 padding: 5px;
-                font-size: 14px;
-            }
-
-            .popup {
-                padding: 10px;
-            }
-
-            .popup button {
-                width: 35px;
-                height: 35px;
                 font-size: 14px;
             }
 
@@ -320,36 +288,6 @@
         </div>
     </div>
 
-    <!-- Попапы -->
-    <div id="train-popup" class="popup">
-        <button onclick="setTrainQuantity(0)">0</button>
-        <button onclick="setTrainQuantity(1)">1</button>
-        <button onclick="setTrainQuantity(2)">2</button>
-        <button onclick="setTrainQuantity(3)">3</button>
-        <button onclick="setTrainQuantity(4)">4</button>
-        <button onclick="setTrainQuantity(5)">5</button>
-        <button onclick="setTrainQuantity(6)">6</button>
-        <button onclick="setTrainQuantity(7)">7</button>
-        <button onclick="setTrainQuantity(8)">8</button>
-        <button onclick="setTrainQuantity(9)">9</button>
-    </div>
-
-    <div id="station-popup" class="popup">
-        <button onclick="setStationQuantity(0)">0</button>
-        <button onclick="setStationQuantity(1)">1</button>
-        <button onclick="setStationQuantity(2)">2</button>
-        <button onclick="setStationQuantity(3)">3</button>
-    </div>
-
-    <div id="pnts-popup" class="popup">
-        <div>Current: <span id="pnts-current-value">0</span></div>
-        <button onclick="changePnts(-10)">-10</button>
-        <button onclick="changePnts(-1)">-1</button>
-        <button onclick="changePnts(1)">+1</button>
-        <button onclick="changePnts(10)">+10</button>
-        <button onclick="setPntsValue()">OK</button>
-    </div>
-
     <!-- JavaScript -->
     <script>
         const soundFiles = [
@@ -358,11 +296,6 @@
             'https://zvukipro.com/uploads/files/2021-11/1637861275_8-1.mp3',
             'https://zvukipro.com/uploads/files/2021-11/1637861465_gudok-poezd.mp3'
         ];
-
-        let currentTrainInput = null;
-        let currentStationInput = null;
-        let currentPntsInput = null;
-        let currentPntsValue = 0;
 
         function calculateScore(playerNumber) {
             const trainLengths = [1, 2, 3, 4, 6, 8];
@@ -400,87 +333,6 @@
             audio.src = soundFiles[playerNumber - 1];
             audio.autoplay = true;
         }
-
-        const trainPopup = document.getElementById('train-popup');
-        const stationPopup = document.getElementById('station-popup');
-        const pntsPopup = document.getElementById('pnts-popup');
-        trainPopup.style.display = 'none';
-        stationPopup.style.display = 'none';
-        pntsPopup.style.display = 'none';
-
-        const trainInputs = document.querySelectorAll('.quantity-input');
-        const stationInputs = document.querySelectorAll('.station-input');
-        const pntsInputs = document.querySelectorAll('.pnts-input');
-
-        trainInputs.forEach(input => {
-            input.addEventListener('click', function(event) {
-                currentTrainInput = input;
-                trainPopup.style.display = 'block';
-                stationPopup.style.display = 'none';
-                pntsPopup.style.display = 'none';
-            });
-        });
-
-        stationInputs.forEach(input => {
-            input.addEventListener('click', function(event) {
-                currentStationInput = input;
-                stationPopup.style.display = 'block';
-                trainPopup.style.display = 'none';
-                pntsPopup.style.display = 'none';
-            });
-        });
-
-        pntsInputs.forEach(input => {
-            input.addEventListener('click', function(event) {
-                currentPntsInput = input;
-                currentPntsValue = Number(input.value) || 0;
-                document.getElementById('pnts-current-value').textContent = currentPntsValue;
-                pntsPopup.style.display = 'block';
-                trainPopup.style.display = 'none';
-                stationPopup.style.display = 'none';
-            });
-        });
-
-        document.addEventListener('mousedown', function(event) {
-            if (!trainPopup.contains(event.target) && 
-                !stationPopup.contains(event.target) && 
-                !pntsPopup.contains(event.target) && 
-                !event.target.classList.contains('quantity-input') && 
-                !event.target.classList.contains('station-input') && 
-                !event.target.classList.contains('pnts-input')) {
-                trainPopup.style.display = 'none';
-                stationPopup.style.display = 'none';
-                pntsPopup.style.display = 'none';
-            }
-        });
-
-        function setTrainQuantity(value) {
-            if (currentTrainInput) {
-                currentTrainInput.value = value;
-            }
-            trainPopup.style.display = 'none';
-        }
-
-        function setStationQuantity(value) {
-            if (currentStationInput) {
-                currentStationInput.value = value;
-            }
-            stationPopup.style.display = 'none';
-        }
-
-        function changePnts(delta) {
-            currentPntsValue += delta;
-            document.getElementById('pnts-current-value').textContent = currentPntsValue;
-        }
-
-        function setPntsValue() {
-            if (currentPntsInput) {
-                currentPntsInput.value = currentPntsValue;
-            }
-            pntsPopup.style.display = 'none';
-        }
     </script>
 </body>
-
-    
 </html>
