@@ -3,144 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket to Ride Score Calculator</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            font-family: Arial, sans-serif;
+    <title>Ticket to Ride Score Calculator (Mobile)</title>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        padding: 10px;
+        background: #f0f0f0;
+        color: #333;
+    }
+
+    .tabs {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .tabs [name="tab-btn"] {
+        display: none;
+    }
+
+    .tabs label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1 1 auto;
+        padding: 12px 8px;
+        background: #ddd;
+        border: 2px solid #ccc;
+        cursor: pointer;
+        font-weight: bold;
+        text-align: center;
+        min-width: 60px;
+        margin: 2px;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .tabs [name="tab-btn"]:checked + label {
+        background: #fff;
+        border-bottom-color: #fff;
+        z-index: 1;
+    }
+
+    .list {
+        display: none;
+        padding: 15px;
+        background: white;
+        border: 2px solid #ccc;
+        border-radius: 0 8px 8px 8px;
+        margin-top: -2px;
+    }
+
+    #tab-btn-1:checked ~ #content-1,
+    #tab-btn-2:checked ~ #content-2,
+    #tab-btn-3:checked ~ #content-3,
+    #tab-btn-4:checked ~ #content-4 {
+        display: block;
+    }
+
+    .ttr input {
+        width: 60px;
+        padding: 8px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        text-align: center;
+        margin-left: 10px;
+    }
+
+    .dest input {
+        width: 70px;
+        padding: 6px;
+        margin: 4px 0;
+    }
+
+    fieldset {
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        margin: 10px 0;
+        padding: 12px;
+    }
+
+    legend {
+        font-weight: bold;
+        padding: 0 8px;
+    }
+
+    button {
+        width: 100%;
+        padding: 14px;
+        font-size: 18px;
+        border: none;
+        border-radius: 8px;
+        margin: 10px 0;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .pnts-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin: 10px 0;
+    }
+
+    .pnts-item {
+        display: flex;
+        align-items: center;
+    }
+
+    .pnts-item label {
+        flex: 1;
+        margin-right: 5px;
+    }
+
+    .ScoreCars {
+        margin: 15px 0;
+        font-size: 18px;
+    }
+
+    #result1, #result2, #result3, #result4 {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    @media (max-width: 480px) {
+        .tabs label {
+            font-size: 14px;
+            padding: 8px 4px;
         }
 
-        .tabs {
-            font-size: 0;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            box-sizing: border-box;
+        .ttr input {
+            width: 50px;
+            font-size: 14px;
         }
 
-        .tabs>input[type="radio"] {
-            display: none;
+        .dest input {
+            width: 60px;
         }
 
-        .tabs>div {
-            display: none;
-            border: 1px solid #e0e0e0;
-            padding: 10px 15px;
+        button {
             font-size: 16px;
-            box-sizing: border-box;
+            padding: 12px;
         }
+    }
 
-        .list, .ttr, .dest, .ScoreCars {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
-        }
-
-        #tab-btn-1:checked~#content-1,
-        #tab-btn-2:checked~#content-2,
-        #tab-btn-3:checked~#content-3,
-        #tab-btn-4:checked~#content-4 {
-            display: block;
-        }
-
-        .tabs>label {
-            display: inline-block;
-            text-align: center;
-            vertical-align: middle;
-            user-select: none;
-            background-color: #f5f5f5;
-            border: 1px solid #e0e0e0;
-            padding: 10px;
-            font-size: 16px;
-            line-height: 1.5;
-            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-            cursor: pointer;
-            position: relative;
-            top: 1px;
-        }
-
-        .tabs>label:not(:first-of-type) {
-            border-left: none;
-        }
-
-        .tabs>input[type="radio"]:checked+label {
-            background-color: #fff;
-            border-bottom: 1px solid #fff;
-        }
-
-        .quantity-input {
-            min-width: 40px;
-            padding: 5px;
-        }
-
-        .station-input {
-            min-width: 20px;
-            padding: 5px;
-        }
-
+    @media (max-width: 360px) {
         .pnts-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
+            grid-template-columns: repeat(2, 1fr);
         }
-
-        .pnts-item {
-            flex: 1 0 30%;
-            display: flex;
-            align-items: center;
-            box-sizing: border-box;
-            flex-wrap: nowrap; /* Запрещаем перенос элементов внутри .pnts-item */
-        }
-
-        .pnts-item label {
-            margin-right: 5px;
-            white-space: nowrap; /* Запрещаем перенос текста в label */
-            font-size: 14px; /* Уменьшаем размер шрифта для метки */
-        }
-
-        .pnts-item input {
-            width: 100%;
-            min-width: 10px; /* Уменьшено с 20px до 10px */
-            padding: 5px;
-            box-sizing: border-box;
-        }
-
-        @media (max-width: 576px) {
-            .tabs>label {
-                padding: 5px;
-                font-size: 14px;
-            }
-
-            .tabs>div {
-                padding: 5px;
-                font-size: 14px;
-            }
-
-            .quantity-input {
-                min-width: 35px;
-            }
-
-            .station-input {
-                min-width: 17.5px;
-            }
-
-            .pnts-item {
-                flex: 1 0 30%; /* Сохраняем 3 столбца */
-            }
-
-            .pnts-item label {
-                font-size: 12px; /* Еще уменьшаем шрифт на мобильных */
-            }
-
-            .pnts-item input {
-                min-width: 7.5px; /* Уменьшено с 15px до 7.5px */
-                padding: 5px;
-                box-sizing: border-box;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <div class="tabs">
@@ -167,21 +187,21 @@
                     <legend>Destination Ticket [Bonus/Penalty]</legend>
                     <label for="stan1">Stations </label><input class="station-input" id="stan1"/> on the playing field<p></p>
                     <div class="pnts-grid">
-                        <div class="pnts-item"><label for="pereg11">Pnts 1</label><input id="pereg11" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg21">Pnts 2</label><input id="pereg21" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg31">Pnts 3</label><input id="pereg31" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg41">Pnts 4</label><input id="pereg41" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg51">Pnts 5</label><input id="pereg51" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg61">Pnts 6</label><input id="pereg61" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg71">Pnts 7</label><input id="pereg71" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg81">Pnts 8</label><input id="pereg81" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg91">Pnts 9</label><input id="pereg91" class="pnts-input"/></div>
+                        <div class="pnts-item"><label for="pereg11">Pnts 1</label><input id="pereg11" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg21">Pnts 2</label><input id="pereg21" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg31">Pnts 3</label><input id="pereg31" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg41">Pnts 4</label><input id="pereg41" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg51">Pnts 5</label><input id="pereg51" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg61">Pnts 6</label><input id="pereg61" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg71">Pnts 7</label><input id="pereg71" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg81">Pnts 8</label><input id="pereg81" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg91">Pnts 9</label><input id="pereg91" class="pnts-input" maxlength="5"/></div>
                     </div>
                     <p><input type="checkbox" id="one1"> Express Bonus</p>
                 </fieldset>
             </fieldset>
             <p></p>
-            <button style="padding: 20px 40px; color: rgb(5, 0, 0); background-color: rgb(248, 68, 36); border-radius: 15px;" onclick="calculateScore(1)"><b>Calculating Scores</b></button>
+            <button style="color: rgb(5, 0, 0); background-color: rgb(248, 68, 36);" onclick="calculateScore(1)"><b>Calculating Scores</b></button>
             <p></p>
             <fieldset class="ScoreCars"><legend>Final Score:</legend><p id="result1">score</p></fieldset>
             <fieldset class="ScoreCars"><legend>Train Cars:</legend><p>45 = <span id="kol1">qty. of train cars on the game board</span> + <span id="kol1_ost">qty. remaining</span></p></fieldset>
@@ -201,21 +221,21 @@
                     <legend>Destination Ticket [Bonus/Penalty]</legend>
                     <label for="stan2">Stations </label><input class="station-input" id="stan2"/> on the playing field<p></p>
                     <div class="pnts-grid">
-                        <div class="pnts-item"><label for="pereg12">Pnts 1</label><input id="pereg12" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg22">Pnts 2</label><input id="pereg22" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg32">Pnts 3</label><input id="pereg32" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg42">Pnts 4</label><input id="pereg42" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg52">Pnts 5</label><input id="pereg52" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg62">Pnts 6</label><input id="pereg62" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg72">Pnts 7</label><input id="pereg72" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg82">Pnts 8</label><input id="pereg82" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg92">Pnts 9</label><input id="pereg92" class="pnts-input"/></div>
+                        <div class="pnts-item"><label for="pereg12">Pnts 1</label><input id="pereg12" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg22">Pnts 2</label><input id="pereg22" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg32">Pnts 3</label><input id="pereg32" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg42">Pnts 4</label><input id="pereg42" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg52">Pnts 5</label><input id="pereg52" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg62">Pnts 6</label><input id="pereg62" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg72">Pnts 7</label><input id="pereg72" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg82">Pnts 8</label><input id="pereg82" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg92">Pnts 9</label><input id="pereg92" class="pnts-input" maxlength="5"/></div>
                     </div>
                     <p><input type="checkbox" id="one2"> Express Bonus</p>
                 </fieldset>
             </fieldset>
             <p></p>
-            <button style="padding: 20px 40px; color: rgb(250, 246, 246); background-color: rgb(36, 50, 248); border-radius: 15px;" onclick="calculateScore(2)"><b>Calculating Scores</b></button>
+            <button style="color: rgb(250, 246, 246); background-color: rgb(36, 50, 248);" onclick="calculateScore(2)"><b>Calculating Scores</b></button>
             <p></p>
             <fieldset class="ScoreCars"><legend>Final Score:</legend><p id="result2">score</p></fieldset>
             <fieldset class="ScoreCars"><legend>Train Cars:</legend><p>45 = <span id="kol2">qty. of train cars on the game board</span> + <span id="kol2_ost">qty. remaining</span></p></fieldset>
@@ -235,21 +255,21 @@
                     <legend>Destination Ticket [Bonus/Penalty]</legend>
                     <label for="stan3">Stations </label><input class="station-input" id="stan3"/> on the playing field<p></p>
                     <div class="pnts-grid">
-                        <div class="pnts-item"><label for="pereg13">Pnts 1</label><input id="pereg13" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg23">Pnts 2</label><input id="pereg23" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg33">Pnts 3</label><input id="pereg33" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg43">Pnts 4</label><input id="pereg43" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg53">Pnts 5</label><input id="pereg53" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg63">Pnts 6</label><input id="pereg63" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg73">Pnts 7</label><input id="pereg73" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg83">Pnts 8</label><input id="pereg83" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg93">Pnts 9</label><input id="pereg93" class="pnts-input"/></div>
+                        <div class="pnts-item"><label for="pereg13">Pnts 1</label><input id="pereg13" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg23">Pnts 2</label><input id="pereg23" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg33">Pnts 3</label><input id="pereg33" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg43">Pnts 4</label><input id="pereg43" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg53">Pnts 5</label><input id="pereg53" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg63">Pnts 6</label><input id="pereg63" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg73">Pnts 7</label><input id="pereg73" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg83">Pnts 8</label><input id="pereg83" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg93">Pnts 9</label><input id="pereg93" class="pnts-input" maxlength="5"/></div>
                     </div>
                     <p><input type="checkbox" id="one3"> Express Bonus</p>
                 </fieldset>
             </fieldset>
             <p></p>
-            <button style="padding: 20px 40px; color: rgb(5, 0, 0); background-color: rgb(36, 248, 64); border-radius: 15px;" onclick="calculateScore(3)"><b>Calculating Scores</b></button>
+            <button style="color: rgb(5, 0, 0); background-color: rgb(36, 248, 64);" onclick="calculateScore(3)"><b>Calculating Scores</b></button>
             <p></p>
             <fieldset class="ScoreCars"><legend>Final Score:</legend><p id="result3">score</p></fieldset>
             <fieldset class="ScoreCars"><legend>Train Cars:</legend><p>45 = <span id="kol3">qty. of train cars on the game board</span> + <span id="kol3_ost">qty. remaining</span></p></fieldset>
@@ -269,21 +289,21 @@
                     <legend>Destination Ticket [Bonus/Penalty]</legend>
                     <label for="stan4">Stations </label><input class="station-input" id="stan4"/> on the playing field<p></p>
                     <div class="pnts-grid">
-                        <div class="pnts-item"><label for="pereg14">Pnts 1</label><input id="pereg14" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg24">Pnts 2</label><input id="pereg24" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg34">Pnts 3</label><input id="pereg34" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg44">Pnts 4</label><input id="pereg44" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg54">Pnts 5</label><input id="pereg54" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg64">Pnts 6</label><input id="pereg64" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg74">Pnts 7</label><input id="pereg74" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg84">Pnts 8</label><input id="pereg84" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg94">Pnts 9</label><input id="pereg94" class="pnts-input"/></div>
+                        <div class="pnts-item"><label for="pereg14">Pnts 1</label><input id="pereg14" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg24">Pnts 2</label><input id="pereg24" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg34">Pnts 3</label><input id="pereg34" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg44">Pnts 4</label><input id="pereg44" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg54">Pnts 5</label><input id="pereg54" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg64">Pnts 6</label><input id="pereg64" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg74">Pnts 7</label><input id="pereg74" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg84">Pnts 8</label><input id="pereg84" class="pnts-input" maxlength="5"/></div>
+                        <div class="pnts-item"><label for="pereg94">Pnts 9</label><input id="pereg94" class="pnts-input" maxlength="5"/></div>
                     </div>
                     <p><input type="checkbox" id="one4"> Express Bonus</p>
                 </fieldset>
             </fieldset>
             <p></p>
-            <button style="padding: 20px 40px; color: rgb(5, 0, 0); background-color: rgb(234, 248, 36); border-radius: 15px;" onclick="calculateScore(4)"><b>Calculating Scores</b></button>
+            <button style="color: rgb(5, 0, 0); background-color: rgb(234, 248, 36);" onclick="calculateScore(4)"><b>Calculating Scores</b></button>
             <p></p>
             <fieldset class="ScoreCars"><legend>Final Score:</legend><p id="result4">score</p></fieldset>
             <fieldset class="ScoreCars"><legend>Train Cars:</legend><p>45 = <span id="kol4">qty. of train cars on the game board</span> + <span id="kol4_ost">qty. remaining</span></p></fieldset>
