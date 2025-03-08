@@ -3,294 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticket to Ride Score Calculator</title>
+    <title>Ticket to Ride Score</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            width: 100%;
+            box-sizing: border-box;
+        }
+
+        body {
             font-family: Arial, sans-serif;
+            font-size: 14px;
+            background-color: #f5f5f5;
+            padding: 10px;
+            color: #333;
         }
 
         .tabs {
-            font-size: 0;
             width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            box-sizing: border-box;
+            overflow-x: auto;
+            white-space: nowrap;
+            background-color: #e0e0e0;
+            padding: 5px 0;
         }
 
-        .tabs>input[type="radio"] {
+        .tabs input[type="radio"] {
             display: none;
         }
 
-        .tabs>div {
-            display: none;
-            border: 1px solid #e0e0e0;
+        .tabs label {
+            display: inline-block;
             padding: 10px 15px;
-            font-size: 16px;
-            box-sizing: border-box;
+            background-color: #ddd;
+            border-radius: 20px 20px 0 0;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
         }
 
-        .list, .ttr, .dest, .ScoreCars {
-            width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
+        .tabs input[type="radio"]:checked + label {
+            background-color: #fff;
+            color: #000;
         }
 
-        #tab-btn-1:checked~#content-1,
-        #tab-btn-2:checked~#content-2,
-        #tab-btn-3:checked~#content-3,
-        #tab-btn-4:checked~#content-4 {
+        .tab-content {
+            display: none;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        #tab-btn-1:checked ~ #content-1,
+        #tab-btn-2:checked ~ #content-2,
+        #tab-btn-3:checked ~ #content-3,
+        #tab-btn-4:checked ~ #content-4 {
             display: block;
         }
 
-        .tabs>label {
-            display: inline-block;
-            text-align: center;
-            vertical-align: middle;
-            user-select: none;
-            background-color: #f5f5f5;
-            border: 1px solid #e0e0e0;
+        fieldset {
+            border: 1px solid #ccc;
             padding: 10px;
-            font-size: 16px;
-            line-height: 1.5;
-            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
-            cursor: pointer;
-            position: relative;
-            top: 1px;
+            margin-bottom: 15px;
+            border-radius: 5px;
         }
 
-        .tabs>label:not(:first-of-type) {
-            border-left: none;
+        legend {
+            font-weight: bold;
+            font-size: 0.9rem;
         }
 
-        .tabs>input[type="radio"]:checked+label {
-            background-color: #fff;
-            border-bottom: 1px solid #fff;
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
-        .quantity-input {
-            min-width: 40px;
-            padding: 5px;
+        .input-group label {
+            flex: 1;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            margin-right: 5px;
         }
 
-        .station-input {
-            min-width: 20px;
-            padding: 5px;
+        .input-group input[type="number"] {
+            width: 50px;
+            padding: 8px;
+            font-size: 0.9rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
         }
 
         .pnts-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
         .pnts-item {
-            flex: 1 0 30%;
             display: flex;
             align-items: center;
-            box-sizing: border-box;
-            flex-wrap: nowrap; /* Запрещаем перенос элементов внутри .pnts-item */
         }
 
         .pnts-item label {
+            font-size: 0.8rem;
             margin-right: 5px;
-            white-space: nowrap; /* Запрещаем перенос текста в label */
-            font-size: 14px; /* Уменьшаем размер шрифта для метки */
         }
 
         .pnts-item input {
             width: 100%;
-            min-width: 10px; /* Уменьшено с 20px до 10px */
-            padding: 5px;
-            box-sizing: border-box;
+            padding: 6px;
+            font-size: 0.9rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
 
-        @media (max-width: 576px) {
-            .tabs>label {
-                padding: 5px;
-                font-size: 14px;
-            }
+        .checkbox {
+            margin: 10px 0;
+            font-size: 0.85rem;
+        }
 
-            .tabs>div {
-                padding: 5px;
-                font-size: 14px;
-            }
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s ease;
+        }
 
-            .quantity-input {
-                min-width: 35px;
-            }
+        button:active {
+            transform: scale(0.98);
+        }
 
-            .station-input {
-                min-width: 17.5px;
-            }
+        button.red { background-color: #f84424; }
+        button.blue { background-color: #2432f8; }
+        button.green { background-color: #24f840; }
+        button.yellow { background-color: #eaf824; }
 
-            .pnts-item {
-                flex: 1 0 30%; /* Сохраняем 3 столбца */
-            }
+        .result {
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+        }
 
-            .pnts-item label {
-                font-size: 12px; /* Еще уменьшаем шрифт на мобильных */
-            }
+        .result.red { color: #f84424; }
+        .result.blue { color: #2432f8; }
+        .result.green { color: #24f840; }
+        .result.yellow { color: #eaf824; }
 
-            .pnts-item input {
-                min-width: 7.5px; /* Уменьшено с 15px до 7.5px */
-                padding: 5px;
-                box-sizing: border-box;
-            }
+        .train-cars {
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="tabs">
-        <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
+        <input type="radio" name="tab-btn" id="tab-btn-1" checked>
         <label for="tab-btn-1">Red <span id="red-score">(0)</span></label>
-        <input type="radio" name="tab-btn" id="tab-btn-2" value="">
+        <input type="radio" name="tab-btn" id="tab-btn-2">
         <label for="tab-btn-2">Blue <span id="blue-score">(0)</span></label>
-        <input type="radio" name="tab-btn" id="tab-btn-3" value="">
+        <input type="radio" name="tab-btn" id="tab-btn-3">
         <label for="tab-btn-3">Green <span id="green-score">(0)</span></label>
-        <input type="radio" name="tab-btn" id="tab-btn-4" value="">
+        <input type="radio" name="tab-btn" id="tab-btn-4">
         <label for="tab-btn-4">Yellow <span id="yellow-score">(0)</span></label>
 
-        <!-- Вкладка для Red -->
-        <div class="list" id="content-1">
-            <fieldset class="ttr">
-                <legend>TICKET TO RIDE</legend>
-                <label for="num11">Train 1 </label><input class="quantity-input" id="num11"/> (x1)<p></p>
-                <label for="num21">Train 2 </label><input class="quantity-input" id="num21"/> (x2)<p></p>
-                <label for="num31">Train 3 </label><input class="quantity-input" id="num31"/> (x4)<p></p>
-                <label for="num41">Train 4 </label><input class="quantity-input" id="num41"/> (x7)<p></p>
-                <label for="num61">Train 6 </label><input class="quantity-input" id="num61"/> (x15)<p></p>
-                <label for="num81">Train 8 </label><input class="quantity-input" id="num81"/> (x21)<p></p>
-                <fieldset class="dest">
-                    <legend>Destination Ticket [Bonus/Penalty]</legend>
-                    <label for="stan1">Stations </label><input class="station-input" id="stan1"/> on the playing field<p></p>
-                    <div class="pnts-grid">
-                        <div class="pnts-item"><label for="pereg11">Pnts 1</label><input id="pereg11" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg21">Pnts 2</label><input id="pereg21" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg31">Pnts 3</label><input id="pereg31" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg41">Pnts 4</label><input id="pereg41" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg51">Pnts 5</label><input id="pereg51" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg61">Pnts 6</label><input id="pereg61" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg71">Pnts 7</label><input id="pereg71" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg81">Pnts 8</label><input id="pereg81" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg91">Pnts 9</label><input id="pereg91" class="pnts-input"/></div>
-                    </div>
-                    <p><input type="checkbox" id="one1"> Express Bonus</p>
-                </fieldset>
+        <!-- Red -->
+        <div class="tab-content" id="content-1">
+            <fieldset>
+                <legend>Train Routes</legend>
+                <div class="input-group"><label>Train 1</label><input type="number" id="num11" min="0"/> (x1)</div>
+                <div class="input-group"><label>Train 2</label><input type="number" id="num21" min="0"/> (x2)</div>
+                <div class="input-group"><label>Train 3</label><input type="number" id="num31" min="0"/> (x4)</div>
+                <div class="input-group"><label>Train 4</label><input type="number" id="num41" min="0"/> (x7)</div>
+                <div class="input-group"><label>Train 6</label><input type="number" id="num61" min="0"/> (x15)</div>
+                <div class="input-group"><label>Train 8</label><input type="number" id="num81" min="0"/> (x21)</div>
             </fieldset>
-            <p></p>
-            <button style="padding: 20px 40px; color: rgb(5, 0, 0); background-color: rgb(248, 68, 36); border-radius: 15px;" onclick="calculateScore(1)"><b>Calculating Scores</b></button>
-            <p></p>
-            <fieldset class="ScoreCars"><legend>Final Score:</legend><p id="result1">score</p></fieldset>
-            <fieldset class="ScoreCars"><legend>Train Cars:</legend><p>45 = <span id="kol1">qty. of train cars on the game board</span> + <span id="kol1_ost">qty. remaining</span></p></fieldset>
+            <fieldset>
+                <legend>Destinations</legend>
+                <div class="input-group"><label>Stations</label><input type="number" id="stan1" min="0"/></div>
+                <div class="pnts-grid">
+                    <div class="pnts-item"><label>Pnts 1</label><input type="number" id="pereg11"/></div>
+                    <div class="pnts-item"><label>Pnts 2</label><input type="number" id="pereg21"/></div>
+                    <div class="pnts-item"><label>Pnts 3</label><input type="number" id="pereg31"/></div>
+                    <div class="pnts-item"><label>Pnts 4</label><input type="number" id="pereg41"/></div>
+                    <div class="pnts-item"><label>Pnts 5</label><input type="number" id="pereg51"/></div>
+                    <div class="pnts-item"><label>Pnts 6</label><input type="number" id="pereg61"/></div>
+                    <div class="pnts-item"><label>Pnts 7</label><input type="number" id="pereg71"/></div>
+                    <div class="pnts-item"><label>Pnts 8</label><input type="number" id="pereg81"/></div>
+                </div>
+                <div class="checkbox"><input type="checkbox" id="one1"> Express Bonus (+10)</div>
+            </fieldset>
+            <button class="red" onclick="calculateScore(1)">Calculate Score</button>
+            <div class="result red" id="result1">0</div>
+            <div class="train-cars">45 = <span id="kol1">0</span> + <span id="kol1_ost">45</span></div>
         </div>
 
-        <!-- Вкладка для Blue -->
-        <div class="list" id="content-2">
-            <fieldset class="ttr">
-                <legend>TICKET TO RIDE</legend>
-                <label for="num12">Train 1 </label><input class="quantity-input" id="num12"/> (x1)<p></p>
-                <label for="num22">Train 2 </label><input class="quantity-input" id="num22"/> (x2)<p></p>
-                <label for="num32">Train 3 </label><input class="quantity-input" id="num32"/> (x4)<p></p>
-                <label for="num42">Train 4 </label><input class="quantity-input" id="num42"/> (x7)<p></p>
-                <label for="num62">Train 6 </label><input class="quantity-input" id="num62"/> (x15)<p></p>
-                <label for="num82">Train 8 </label><input class="quantity-input" id="num82"/> (x21)<p></p>
-                <fieldset class="dest">
-                    <legend>Destination Ticket [Bonus/Penalty]</legend>
-                    <label for="stan2">Stations </label><input class="station-input" id="stan2"/> on the playing field<p></p>
-                    <div class="pnts-grid">
-                        <div class="pnts-item"><label for="pereg12">Pnts 1</label><input id="pereg12" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg22">Pnts 2</label><input id="pereg22" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg32">Pnts 3</label><input id="pereg32" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg42">Pnts 4</label><input id="pereg42" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg52">Pnts 5</label><input id="pereg52" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg62">Pnts 6</label><input id="pereg62" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg72">Pnts 7</label><input id="pereg72" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg82">Pnts 8</label><input id="pereg82" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg92">Pnts 9</label><input id="pereg92" class="pnts-input"/></div>
-                    </div>
-                    <p><input type="checkbox" id="one2"> Express Bonus</p>
-                </fieldset>
+        <!-- Blue -->
+        <div class="tab-content" id="content-2">
+            <fieldset>
+                <legend>Train Routes</legend>
+                <div class="input-group"><label>Train 1</label><input type="number" id="num12" min="0"/> (x1)</div>
+                <div class="input-group"><label>Train 2</label><input type="number" id="num22" min="0"/> (x2)</div>
+                <div class="input-group"><label>Train 3</label><input type="number" id="num32" min="0"/> (x4)</div>
+                <div class="input-group"><label>Train 4</label><input type="number" id="num42" min="0"/> (x7)</div>
+                <div class="input-group"><label>Train 6</label><input type="number" id="num62" min="0"/> (x15)</div>
+                <div class="input-group"><label>Train 8</label><input type="number" id="num82" min="0"/> (x21)</div>
             </fieldset>
-            <p></p>
-            <button style="padding: 20px 40px; color: rgb(250, 246, 246); background-color: rgb(36, 50, 248); border-radius: 15px;" onclick="calculateScore(2)"><b>Calculating Scores</b></button>
-            <p></p>
-            <fieldset class="ScoreCars"><legend>Final Score:</legend><p id="result2">score</p></fieldset>
-            <fieldset class="ScoreCars"><legend>Train Cars:</legend><p>45 = <span id="kol2">qty. of train cars on the game board</span> + <span id="kol2_ost">qty. remaining</span></p></fieldset>
+            <fieldset>
+                <legend>Destinations</legend>
+                <div class="input-group"><label>Stations</label><input type="number" id="stan2" min="0"/></div>
+                <div class="pnts-grid">
+                    <div class="pnts-item"><label>Pnts 1</label><input type="number" id="pereg12"/></div>
+                    <div class="pnts-item"><label>Pnts 2</label><input type="number" id="pereg22"/></div>
+                    <div class="pnts-item"><label>Pnts 3</label><input type="number" id="pereg32"/></div>
+                    <div class="pnts-item"><label>Pnts 4</label><input type="number" id="pereg42"/></div>
+                    <div class="pnts-item"><label>Pnts 5</label><input type="number" id="pereg52"/></div>
+                    <div class="pnts-item"><label>Pnts 6</label><input type="number" id="pereg62"/></div>
+                    <div class="pnts-item"><label>Pnts 7</label><input type="number" id="pereg72"/></div>
+                    <div class="pnts-item"><label>Pnts 8</label><input type="number" id="pereg82"/></div>
+                </div>
+                <div class="checkbox"><input type="checkbox" id="one2"> Express Bonus (+10)</div>
+            </fieldset>
+            <button class="blue" onclick="calculateScore(2)">Calculate Score</button>
+            <div class="result blue" id="result2">0</div>
+            <div class="train-cars">45 = <span id="kol2">0</span> + <span id="kol2_ost">45</span></div>
         </div>
 
-        <!-- Вкладка для Green -->
-        <div class="list" id="content-3">
-            <fieldset class="ttr">
-                <legend>TICKET TO RIDE</legend>
-                <label for="num13">Train 1 </label><input class="quantity-input" id="num13"/> (x1)<p></p>
-                <label for="num23">Train 2 </label><input class="quantity-input" id="num23"/> (x2)<p></p>
-                <label for="num33">Train 3 </label><input class="quantity-input" id="num33"/> (x4)<p></p>
-                <label for="num43">Train 4 </label><input class="quantity-input" id="num43"/> (x7)<p></p>
-                <label for="num63">Train 6 </label><input class="quantity-input" id="num63"/> (x15)<p></p>
-                <label for="num83">Train 8 </label><input class="quantity-input" id="num83"/> (x21)<p></p>
-                <fieldset class="dest">
-                    <legend>Destination Ticket [Bonus/Penalty]</legend>
-                    <label for="stan3">Stations </label><input class="station-input" id="stan3"/> on the playing field<p></p>
-                    <div class="pnts-grid">
-                        <div class="pnts-item"><label for="pereg13">Pnts 1</label><input id="pereg13" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg23">Pnts 2</label><input id="pereg23" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg33">Pnts 3</label><input id="pereg33" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg43">Pnts 4</label><input id="pereg43" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg53">Pnts 5</label><input id="pereg53" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg63">Pnts 6</label><input id="pereg63" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg73">Pnts 7</label><input id="pereg73" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg83">Pnts 8</label><input id="pereg83" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg93">Pnts 9</label><input id="pereg93" class="pnts-input"/></div>
-                    </div>
-                    <p><input type="checkbox" id="one3"> Express Bonus</p>
-                </fieldset>
+        <!-- Green -->
+        <div class="tab-content" id="content-3">
+            <fieldset>
+                <legend>Train Routes</legend>
+                <div class="input-group"><label>Train 1</label><input type="number" id="num13" min="0"/> (x1)</div>
+                <div class="input-group"><label>Train 2</label><input type="number" id="num23" min="0"/> (x2)</div>
+                <div class="input-group"><label>Train 3</label><input type="number" id="num33" min="0"/> (x4)</div>
+                <div class="input-group"><label>Train 4</label><input type="number" id="num43" min="0"/> (x7)</div>
+                <div class="input-group"><label>Train 6</label><input type="number" id="num63" min="0"/> (x15)</div>
+                <div class="input-group"><label>Train 8</label><input type="number" id="num83" min="0"/> (x21)</div>
             </fieldset>
-            <p></p>
-            <button style="padding: 20px 40px; color: rgb(5, 0, 0); background-color: rgb(36, 248, 64); border-radius: 15px;" onclick="calculateScore(3)"><b>Calculating Scores</b></button>
-            <p></p>
-            <fieldset class="ScoreCars"><legend>Final Score:</legend><p id="result3">score</p></fieldset>
-            <fieldset class="ScoreCars"><legend>Train Cars:</legend><p>45 = <span id="kol3">qty. of train cars on the game board</span> + <span id="kol3_ost">qty. remaining</span></p></fieldset>
+            <fieldset>
+                <legend>Destinations</legend>
+                <div class="input-group"><label>Stations</label><input type="number" id="stan3" min="0"/></div>
+                <div class="pnts-grid">
+                    <div class="pnts-item"><label>Pnts 1</label><input type="number" id="pereg13"/></div>
+                    <div class="pnts-item"><label>Pnts 2</label><input type="number" id="pereg23"/></div>
+                    <div class="pnts-item"><label>Pnts 3</label><input type="number" id="pereg33"/></div>
+                    <div class="pnts-item"><label>Pnts 4</label><input type="number" id="pereg43"/></div>
+                    <div class="pnts-item"><label>Pnts 5</label><input type="number" id="pereg53"/></div>
+                    <div class="pnts-item"><label>Pnts 6</label><input type="number" id="pereg63"/></div>
+                    <div class="pnts-item"><label>Pnts 7</label><input type="number" id="pereg73"/></div>
+                    <div class="pnts-item"><label>Pnts 8</label><input type="number" id="pereg83"/></div>
+                </div>
+                <div class="checkbox"><input type="checkbox" id="one3"> Express Bonus (+10)</div>
+            </fieldset>
+            <button class="green" onclick="calculateScore(3)">Calculate Score</button>
+            <div class="result green" id="result3">0</div>
+            <div class="train-cars">45 = <span id="kol3">0</span> + <span id="kol3_ost">45</span></div>
         </div>
 
-        <!-- Вкладка для Yellow -->
-        <div class="list" id="content-4">
-            <fieldset class="ttr">
-                <legend>TICKET TO RIDE</legend>
-                <label for="num14">Train 1 </label><input class="quantity-input" id="num14"/> (x1)<p></p>
-                <label for="num24">Train 2 </label><input class="quantity-input" id="num24"/> (x2)<p></p>
-                <label for="num34">Train 3 </label><input class="quantity-input" id="num34"/> (x4)<p></p>
-                <label for="num44">Train 4 </label><input class="quantity-input" id="num44"/> (x7)<p></p>
-                <label for="num64">Train 6 </label><input class="quantity-input" id="num64"/> (x15)<p></p>
-                <label for="num84">Train 8 </label><input class="quantity-input" id="num84"/> (x21)<p></p>
-                <fieldset class="dest">
-                    <legend>Destination Ticket [Bonus/Penalty]</legend>
-                    <label for="stan4">Stations </label><input class="station-input" id="stan4"/> on the playing field<p></p>
-                    <div class="pnts-grid">
-                        <div class="pnts-item"><label for="pereg14">Pnts 1</label><input id="pereg14" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg24">Pnts 2</label><input id="pereg24" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg34">Pnts 3</label><input id="pereg34" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg44">Pnts 4</label><input id="pereg44" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg54">Pnts 5</label><input id="pereg54" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg64">Pnts 6</label><input id="pereg64" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg74">Pnts 7</label><input id="pereg74" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg84">Pnts 8</label><input id="pereg84" class="pnts-input"/></div>
-                        <div class="pnts-item"><label for="pereg94">Pnts 9</label><input id="pereg94" class="pnts-input"/></div>
-                    </div>
-                    <p><input type="checkbox" id="one4"> Express Bonus</p>
-                </fieldset>
+        <!-- Yellow -->
+        <div class="tab-content" id="content-4">
+            <fieldset>
+                <legend>Train Routes</legend>
+                <div class="input-group"><label>Train 1</label><input type="number" id="num14" min="0"/> (x1)</div>
+                <div class="input-group"><label>Train 2</label><input type="number" id="num24" min="0"/> (x2)</div>
+                <div class="input-group"><label>Train 3</label><input type="number" id="num34" min="0"/> (x4)</div>
+                <div class="input-group"><label>Train 4</label><input type="number" id="num44" min="0"/> (x7)</div>
+                <div class="input-group"><label>Train 6</label><input type="number" id="num64" min="0"/> (x15)</div>
+                <div class="input-group"><label>Train 8</label><input type="number" id="num84" min="0"/> (x21)</div>
             </fieldset>
-            <p></p>
-            <button style="padding: 20px 40px; color: rgb(5, 0, 0); background-color: rgb(234, 248, 36); border-radius: 15px;" onclick="calculateScore(4)"><b>Calculating Scores</b></button>
-            <p></p>
-            <fieldset class="ScoreCars"><legend>Final Score:</legend><p id="result4">score</p></fieldset>
-            <fieldset class="ScoreCars"><legend>Train Cars:</legend><p>45 = <span id="kol4">qty. of train cars on the game board</span> + <span id="kol4_ost">qty. remaining</span></p></fieldset>
+            <fieldset>
+                <legend>Destinations</legend>
+                <div class="input-group"><label>Stations</label><input type="number" id="stan4" min="0"/></div>
+                <div class="pnts-grid">
+                    <div class="pnts-item"><label>Pnts 1</label><input type="number" id="pereg14"/></div>
+                    <div class="pnts-item"><label>Pnts 2</label><input type="number" id="pereg24"/></div>
+                    <div class="pnts-item"><label>Pnts 3</label><input type="number" id="pereg34"/></div>
+                    <div class="pnts-item"><label>Pnts 4</label><input type="number" id="pereg44"/></div>
+                    <div class="pnts-item"><label>Pnts 5</label><input type="number" id="pereg54"/></div>
+                    <div class="pnts-item"><label>Pnts 6</label><input type="number" id="pereg64"/></div>
+                    <div class="pnts-item"><label>Pnts 7</label><input type="number" id="pereg74"/></div>
+                    <div class="pnts-item"><label>Pnts 8</label><input type="number" id="pereg84"/></div>
+                </div>
+                <div class="checkbox"><input type="checkbox" id="one4"> Express Bonus (+10)</div>
+            </fieldset>
+            <button class="yellow" onclick="calculateScore(4)">Calculate Score</button>
+            <div class="result yellow" id="result4">0</div>
+            <div class="train-cars">45 = <span id="kol4">0</span> + <span id="kol4_ost">45</span></div>
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
         const soundFiles = [
             'https://zvukipro.com/uploads/files/2021-04/1617869497_87223b11f59f15c.mp3',
@@ -315,25 +326,24 @@
             const stationPenalty = stations * 4;
 
             let pntsSum = 0;
-            for (let i = 1; i <= 9; i++) {
+            for (let i = 1; i <= 8; i++) {
                 pntsSum += Number(document.getElementById(`pereg${i}${playerNumber}`).value) || 0;
             }
 
             const expressBonus = document.getElementById(`one${playerNumber}`).checked ? 10 : 0;
-
             const result = 12 + trainPoints - stationPenalty + pntsSum + expressBonus;
             const remainingCars = 45 - usedCars;
 
-            document.getElementById(`result${playerNumber}`).innerHTML = result;
-            document.getElementById(`kol${playerNumber}`).innerHTML = usedCars;
-            document.getElementById(`kol${playerNumber}_ost`).innerHTML = remainingCars;
+            document.getElementById(`result${playerNumber}`).textContent = result;
+            document.getElementById(`kol${playerNumber}`).textContent = usedCars;
+            document.getElementById(`kol${playerNumber}_ost`).textContent = remainingCars;
 
             const color = ['red', 'blue', 'green', 'yellow'][playerNumber - 1];
-            document.getElementById(`${color}-score`).innerHTML = `(${result})`;
+            document.getElementById(`${color}-score`).textContent = `(${result})`;
 
             const audio = new Audio();
             audio.src = soundFiles[playerNumber - 1];
-            audio.autoplay = true;
+            audio.play().catch(error => console.log("Ошибка воспроизведения звука:", error));
         }
     </script>
 </body>
